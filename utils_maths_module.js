@@ -635,7 +635,6 @@ function sumshow(sumType, h1, w1, h2, w2) {
       break;
     case "differentiation":
       sumData = differentiation();
-      msgbox = 'Here';
       break;
   }
   if (SolnWin) {      //Prior to 1st open of SolnWin, the .closed test is null
