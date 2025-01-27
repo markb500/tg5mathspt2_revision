@@ -1,4 +1,4 @@
-var sumarrdifferentiation = [], a, n, n1, n2, n3, a1, sFuncq1, sFuncq2, sFunca, TrigRatio, x, y, b, c, d, e;
+var sumarrdifferentiation = [], arrn = [], arra = [], a, n, n1, n2, n3, a1, sFuncq1, sFuncq2, sFunca, TrigRatio, x, y, b, c, d, e;
 
 function differentiation() {
     sumq = "";
@@ -18,17 +18,28 @@ function differentiation() {
             }
             if (rndgen(1, 2, 0, 1, -1) === 1) {
                 sFuncq1 = "Leibniz's notation";
-                sFuncq2 = "y";
+                sFuncq2 = y;
                 sFunca = "\\frac{d" + y + "}{d" + x + "}";
             } else {
                 sFuncq1 = "functional notation";
                 sFuncq2 = "f(" + x + ")";
                 sFunca = "f'(" + x + ")";
             }
-            a = rndgen(-5, 5, 0, 1, -1);
+            do {
+                a = rndgen(-5, 5, 0, 1, -1)
+                // a = -3;
+            } while (arra.includes(a));
+            arra.push(a);
+            if (arra.length > Math.ceil(5)) {
+              arra.shift();
+            }
             do {
                 n = rndgen(-9, 9, 0, 1, -1);
-            }while (n === 0);
+            }while (n === 0 || arrn.includes(n));
+            arrn.push(n);
+            if (arrn.length > Math.ceil(9)) {
+              arrn.shift();
+            }
             if (a === 1) {
                 if (n === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=" + x + "$$";
@@ -88,11 +99,20 @@ function differentiation() {
                 sFunca = "f'(x)";
             }
             do {
-                a = rndgen(-5, 5, 0, 1, -1);
-            } while (a === 0);
+                a = rndgen(-5, 5, 0, 1, -1)
+                // a = -3;
+            } while (a === 0 || arra.includes(a));
+            arra.push(a);
+            if (arra.length > Math.ceil(5)) {
+              arra.shift();
+            }
             do {
                 n = rndgen(-9, 9, 0, 1, -1);
-            }while (n === 0);
+            }while (n === 0 || arrn.includes(n));
+            arrn.push(n);
+            if (arrn.length > Math.ceil(9)) {
+              arrn.shift();
+            }
             if (a === 1) {
                 if (n === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=e^x$$";
@@ -168,14 +188,15 @@ function differentiation() {
                 sFuncq2 = "f(x)";
                 sFunca = "f'(x)";
             }
-            // a = rndgen(1, 5, 0, 1, -1);
-            a = 3;
+            a = rndgen(1, 5, 0, 1, -1);
             do {
-                // n = rndgen(-5, 5, 0, 1, -1);
-                n = -2;
-            } while (n === 0)
-            // TrigRatio = rndgen(1, 3, 0, 1, -1);
-            TrigRatio = 3;
+                n = rndgen(-9, 9, 0, 1, -1);
+            }while (n === 0 || arrn.includes(n));
+            arrn.push(n);
+            if (arrn.length > Math.ceil(5)) {
+              arrn.shift();
+            }
+            TrigRatio = rndgen(1, 3, 0, 1, -1);
             if (n > 0 && TrigRatio === 1) {         //Sin
                 if (n === 1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Sinx$$";
@@ -292,9 +313,13 @@ function differentiation() {
             do {
                 a = rndgen(1, 5, 0, 1, -1);
                 do {
-                    n = rndgen(-5, 5, 0, 1, -1);
-                } while (n === 0)
+                    n = rndgen(-9, 9, 0, 1, -1);
+                }while (n === 0 || arrn.includes(n));
             } while (a === n)
+            arrn.push(n);
+            if (arrn.length > Math.ceil(5)) {
+              arrn.shift();
+            }
             if (n ===1 && a === 1) {
                 sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Log_ex$$";
             } else if (n === 1 && a > 1) {
