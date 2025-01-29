@@ -131,7 +131,7 @@ function gcd(array) {
 }
 
 function lcm2(a, b) {
-  // Least common multiple of 2 integers
+  // Lowest common multiple of 2 integers
   return a*b / gcd2(a, b);
 }
 
@@ -635,6 +635,9 @@ function sumshow(sumType, h1, w1, h2, w2) {
       break;
     case "differentiation":
       sumData = differentiation();
+      break;
+    case "integration":
+      sumData = integration();
       break;
   }
   if (SolnWin) {      //Prior to 1st open of SolnWin, the .closed test is null
