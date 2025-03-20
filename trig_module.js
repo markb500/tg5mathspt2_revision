@@ -1,8 +1,8 @@
 var ang, adj, opp, hyp, units, unitsmath;
 function trig(ctx) {
     //Draws a right angled triangle in approx correct scale for randomly generated dimensions (3 sides & angles).
-    //2 dimensions randomly selected to be calculated. Dimensions randomly changed too.
-    var left, right, top, bottom;
+    //2 dimensions randomly selected to be calculated. Units randomly changed too.
+    var left, right, top, bottom, mid;
     sumq = "";
     suma = "";
     switch(rndgen(1, 3, 0, 1, -1)) {      //1=m 2=cm 3=mm
@@ -24,7 +24,7 @@ function trig(ctx) {
     } while(ang === 45)
     adj = rndgen(5, 150, 2, 0.01, -1);      //5 to 150 in 0.01's
     opp = dp(adj * Math.tan(ang * Math.PI / 180), 2, -1);      //adj * tan(ang) 2dp
-    hyp = dp(adj / Math.cos(ang * Math.PI / 180), 2, -1);      //adj / tan(ang) 2dp
+    hyp = dp(adj / Math.cos(ang * Math.PI / 180), 2, -1);      //adj / cos(ang) 2dp
     
     left = 50;
     top = 25;

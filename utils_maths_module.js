@@ -566,6 +566,7 @@ function isCanvasBlank(canvas) {
 
 function sumshow(sumType, h1, w1, h2, w2) {
   //Called by btn click in Index. Gets required sum data and sets up canvas if required.
+  let ctx, ctx2;
   document.getElementById("myCanvas");
   myCanvas.height = h1;
   myCanvas.width = w1;
@@ -576,34 +577,12 @@ function sumshow(sumType, h1, w1, h2, w2) {
   myCanvas2.style.visibility = "hidden";
   document.getElementById("a").innerHTML = "";
   switch (sumType) {
-    case "noncalc":
-      sumData = noncalc();
-      break;
-    case "fracs":
-      sumData = fracs();
-      break;
-    case "percentratio":
-      sumData = percentratio();
-      break;
     case "indices":
       sumData = indices();
-      break;
-    case "numform":
-      sumData = numform();
       break;
     case "hcflcm":
       ctx2 = myCanvas2.getContext('2d');
       sumData = hcflcm(ctx2);
-      break;
-    case "solve1":
-      sumData = solve1();
-      break;
-    case "stats":
-      ctx = myCanvas.getContext('2d');
-      sumData = stats(ctx);
-      break;
-    case "quadratics":
-      sumData = quadratics();
       break;
     case "transposeI":
       sumData = transposeI();
@@ -611,33 +590,51 @@ function sumshow(sumType, h1, w1, h2, w2) {
     case "transposeII":
       sumData = transposeII();
       break;
-    case "conv":
-      sumData = conv();
+    case "solve1":
+      sumData = solve1();
       break;
-    case "trig":
-      ctx = myCanvas.getContext('2d');
-      sumData = trig(ctx);
+    case "quadratics":
+      sumData = quadratics();
       break;
-    case "prop":
-      sumData = prop();
-      break;
-    case "sincosgraph":
+    case "simultaneous":
       ctx2 = myCanvas2.getContext('2d');
-      sumData = sincosgraph(ctx2);
+      sumData = simultaneous(ctx2);
+      break;
+    case "logs":
+      sumData = logs();
       break;
     case "straightgraph":
       ctx2 = myCanvas2.getContext('2d');
       sumData = straightgraph(ctx2);
       break;
+    case "trig":
+      ctx = myCanvas.getContext('2d');
+      sumData = trig(ctx);
+      break;
+    case "nonratrig":
+      ctx = myCanvas.getContext('2d');
+      sumData = nonratrig(ctx);
+      break;
+    case "sincosgraph":
+      ctx2 = myCanvas2.getContext('2d');
+      sumData = sincosgraph(ctx2);
+      break;
+    case "conv":
+      sumData = conv();
+      break;
     case "areavol":
       ctx = myCanvas.getContext('2d');
       sumData = areavol(ctx);
       break;
-    case "differentiation":
-      sumData = differentiation();
-      break;
-    case "integration":
-      sumData = integration();
+      case "differentiation":
+        sumData = differentiation();
+        break;
+      case "integration":
+        sumData = integration();
+        break;
+    case "stats":
+      ctx = myCanvas.getContext('2d');
+      sumData = stats(ctx);
       break;
   }
   if (SolnWin) {      //Prior to 1st open of SolnWin, the .closed test is null
@@ -664,20 +661,8 @@ function sumshow(sumType, h1, w1, h2, w2) {
 function testsumshow(sumType, qnum) {
   //Called by sumAuth, used in test creation. Gets required sum and sets up canvas if required.
   switch (sumType) {
-    case "noncalc":
-      sumData = noncalc();
-      break;
-    case "fracs":
-      sumData = fracs();
-      break;
-    case "percentratio":
-      sumData = percentratio();
-      break;
     case "indices":
       sumData = indices();
-      break;
-    case "numform":
-      sumData = numform();
       break;
     case "hcflcm":
       document.getElementById('myCanvasa' + qnum).height="350";
@@ -687,17 +672,53 @@ function testsumshow(sumType, qnum) {
       sumData = hcflcm(ctx2);
       sumData[1] = sumData[1].replace("<br>".repeat(12), "");     //Removes lead in <br>'s from solution
       break;
+    case "transposeI":
+      sumData = transposeI();
+      break;
+    case "transposeII":
+      sumData = transposeII();
+      break;
     case "solve1":
       sumData = solve1();
       break;
     case "quadratics":
       sumData = quadratics();
       break;
-    case "transposeI":
-      sumData = transposeI();
+    case "straightgraph":
+      document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasa' + qnum).height = '400';
+      document.getElementById('myCanvasa' + qnum).width = '400';
+      ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
+      sumData = straightgraph(ctx2);
+      sumData[1] = sumData[1].replace("<br>".repeat(14), "");     //Removes lead in <br>'s from solution
       break;
-    case "transposeII":
-      sumData = transposeII();
+    case "trig":
+      document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasq' + qnum).height = '375';
+      document.getElementById('myCanvasq' + qnum).width = '450';
+      ctx = document.getElementById('myCanvasq' + qnum).getContext('2d');
+      document.getElementById('myCanvasqa' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasqa' + qnum).height = '375';
+      document.getElementById('myCanvasqa' + qnum).width = '450';
+      ctx2 = document.getElementById('myCanvasqa' + qnum).getContext('2d');
+      sumData = trig(ctx);
+      // sumData[0] = sumData[0] + '<br>'.repeat(10);    //Makes space for canvas between this and next q, in pre-print view
+      ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
+      sumData[1] = sumData[1].replace("<br>".repeat(16), "");     //Removes lead in <br>'s from solution
+      break;
+    case "nonratrig":
+      document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasq' + qnum).height = '375';
+      document.getElementById('myCanvasq' + qnum).width = '450';
+      ctx = document.getElementById('myCanvasq' + qnum).getContext('2d');
+      document.getElementById('myCanvasqa' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasqa' + qnum).height = '375';
+      document.getElementById('myCanvasqa' + qnum).width = '450';
+      ctx2 = document.getElementById('myCanvasqa' + qnum).getContext('2d');
+      sumData = nonratrig(ctx);
+      // sumData[0] = sumData[0] + '<br>'.repeat(10);    //Makes space for canvas between this and next q, in pre-print view
+      ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
+      sumData[1] = sumData[1].replace("<br>".repeat(16), "");     //Removes lead in <br>'s from solution
       break;
     case "conv":
       sumData = conv();
@@ -725,14 +746,6 @@ function testsumshow(sumType, qnum) {
       document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
       ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
       sumData = sincosgraph(ctx2);
-      break;
-    case "straightgraph":
-      document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
-      document.getElementById('myCanvasa' + qnum).height = '400';
-      document.getElementById('myCanvasa' + qnum).width = '400';
-      ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
-      sumData = straightgraph(ctx2);
-      sumData[1] = sumData[1].replace("<br>".repeat(14), "");     //Removes lead in <br>'s from solution
       break;
     case "statistics":
       document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';

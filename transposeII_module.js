@@ -3,8 +3,9 @@ function transposeII() {
     var sum;
     sumq = "";
     suma = "";
-    sumarrtranspose2 = QLimitRepeats(sumarrtranspose2, 21);   //Ensures no repeat question until at least 50% of questions shown
+    sumarrtranspose2 = QLimitRepeats(sumarrtranspose2, 23);   //Ensures no repeat question until at least 50% of questions shown
     sum = sumarrtranspose2[sumarrtranspose2.length - 1];
+    // sum = 23;
     switch(sum) {
         case 1:
             sumq += "Transpose the following to make b the subject.";
@@ -195,6 +196,25 @@ function transposeII() {
             sumq += "$$Q=mc(t_1-t_2)$$";
             suma += "$$\\begin{aligned}\\frac{Q}{mc}&=t_1-t_2\\\\[5pt]";
             suma += "\\frac{Q}{mc}+t_2&=t_1\\end{aligned}$$";
+            break;
+
+        case 22:
+            sumq += "Transpose the following to make x the subject.";
+            sumq += "$$3^{8x}=y$$";
+            suma += "$$\\begin{aligned}Log_{\\tiny 10}3^{8x}=Log_{\\tiny 10}y\\\\[5pt]";
+            suma += "8xLog_{\\tiny 10}3=Log_{\\tiny 10}y\\\\[5pt]";
+            suma += "x=\\frac{Log_{\\tiny 10}y}{8Log_{\\tiny 10}3}";
+            suma += "\\end{aligned}$$";
+            break;
+
+        case 23:
+            sumq += "Transpose the following to make x the subject.";
+            sumq += "$$10^{3c}=2d$$";
+            suma += "$$\\begin{aligned}Log_{\\tiny 10}10^{3c}=Log_{\\tiny 10}2d\\\\[5pt]";
+            suma += "3cLog_{\\tiny 10}10=Log_{\\tiny 10}2d\\\\[5pt]";
+            suma += "3c=Log_{\\tiny 10}2d\\\\[5pt]";
+            suma += "c=\\frac{Log_{\\tiny 10}2d}{3}";
+            suma += "\\end{aligned}$$";
             break;
     }
     
