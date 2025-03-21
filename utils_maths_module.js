@@ -662,7 +662,8 @@ function sumshow(sumType, h1, w1, h2, w2) {
       sumData = solve1();
       break;
     case "quadratics":
-      sumData = quadratics();
+      ctx2 = myCanvas2.getContext('2d');
+      sumData = quadratics(ctx2);
       break;
     case "simultaneous":
       ctx2 = myCanvas2.getContext('2d');
