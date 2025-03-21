@@ -543,6 +543,74 @@ function coordTab(xcf1, c1) {
   return {x11: xtab11, x12: xtab12, x13: xtab13, x14: xtab14, y11: ytab11, y12: ytab12, y13: ytab13, y14: ytab14};
 }
 
+function coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, xscale, xpositive, sum) {
+  //Used in Simultaneous Module. Creates the coordinates for the coord tables
+  if (xpositive) {
+    xtab11 = x - xscale;
+    xtab21 = x - xscale;
+    if (sum === 1) {
+      ytab11 = dp((c1 - xcf1 * xtab11) / ycf1, 1, -1);
+      ytab21 = dp((c2 - xcf2 * xtab21) / ycf2, 1, -1);
+    } else {
+      ytab11 = dp(xcf1 * xtab11 + c1, 1, -1);
+      ytab21 = dp(xcf2 * xtab21 + c2, 1, -1);
+    }
+    xtab12 = x;
+    xtab22 = x;
+    ytab12 = y;
+    ytab22 = y;
+    xtab13 = x + xscale;
+    xtab23 = x + xscale;
+    if (sum === 1) {
+      ytab13 = dp((c1 - xcf1 * xtab13) / ycf1, 1, -1);
+      ytab23 = dp((c2 - xcf2 * xtab23) / ycf2, 1, -1);
+    } else {
+      ytab13 = dp(xcf1 * xtab13 + c1, 1, -1);
+      ytab23 = dp(xcf2 * xtab23 + c2, 1, -1);
+    }
+  } else {
+    xtab11 = x + xscale;
+    xtab21 = x + xscale;
+    if (sum === 1) {
+      ytab11 = dp((c1 - xcf1 * xtab11) / ycf1, 1, -1);
+      ytab21 = dp((c2 - xcf2 * xtab21) / ycf2, 1, -1);
+    } else {
+      ytab11 = dp(xcf1 * xtab11 + c1, 1, -1);
+      ytab21 = dp(xcf2 * xtab21 + c2, 1, -1);
+    }
+    xtab12 = x;
+    xtab22 = x;
+    ytab12 = y;
+    ytab22 = y;
+    xtab13 = x - xscale;
+    xtab23 = x - xscale;
+    if (sum === 1) {
+      ytab13 = dp((c1 - xcf1 * xtab13) / ycf1, 1, -1);
+      ytab23 = dp((c2 - xcf2 * xtab23) / ycf2, 1, -1);
+    } else {
+      ytab13 = dp(xcf1 * xtab13 + c1, 1, -1);
+      ytab23 = dp(xcf2 * xtab23 + c2, 1, -1);
+    }
+  }
+  return {x11: xtab11, x12: xtab12, x13: xtab13, y11: ytab11, y12: ytab12, y13: ytab13, 
+          x21: xtab21, x22: xtab22, x23: xtab23, y21: ytab21, y22: ytab22, y23: ytab23};
+}
+
+function QLimitRepeats(arr, x) {
+  //Ensures no repeat question until at least 50% of questions in calling module have been shown.
+  //'arr' stores previous questions for calling module. 'x' is the number of questions in the calling module.
+  var sum;
+  do {
+    sum = rndgen(1, x, 0, 1, -1);
+  } while (arr.includes(sum))
+  arr.push(sum);
+  if (arr.length > Math.ceil(x/2)) {
+    arr.shift();
+  }
+  return arr;
+}
+
+
 function QLimitRepeats(arr, x) {
   //Ensures no repeat question until at least 50% of questions in calling module have been shown.
   //'arr' stores previous questions for calling module. 'x' is the number of questions in the calling module.

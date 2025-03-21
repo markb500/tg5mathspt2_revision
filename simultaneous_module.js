@@ -88,7 +88,7 @@ function simultaneous(ctx2) {
                 youter2 = (c2 - xcf2 * -6 * scale.x) / ycf2;
             }
             
-            tab = coordTab(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, scale.x, scale.xptve, 1);  //Sets x & y coords for coord table
+            tab = coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, scale.x, scale.xptve, 1);  //Sets x & y coords for coord table
         
             sumq += "Solve the simultaneous equations, using graphical and algebraic methods.";
             sumq += "$$\\begin{alignat}{2}" + 
@@ -292,7 +292,7 @@ function simultaneous(ctx2) {
                 youter2 = xcf2 * -6 * scale.x + c2;
             }
             
-            tab = coordTab(x, y, xcf1, -1, c1, xcf2, -1, c2, scale.x, scale.xptve, 2);  //Sets x & y coords for coord table
+            tab = coordTabSimEqn(x, y, xcf1, -1, c1, xcf2, -1, c2, scale.x, scale.xptve, 2);  //Sets x & y coords for coord table
 
             sumq += "Solve the simultaneous equations, using graphical and algebraic methods.";
             sumq += "$$\\begin{aligned}" + ltr2 + "&=" + cfchk(xcf1, ltr1, 1, 1) + cfchk(c1, "", 0, 0) + "\\\\" + 
