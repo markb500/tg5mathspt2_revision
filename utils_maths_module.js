@@ -596,6 +596,47 @@ function coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, xscale, xpositive,
           x21: xtab21, x22: xtab22, x23: xtab23, y21: ytab21, y22: ytab22, y23: ytab23};
 }
 
+function FindMean(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i];
+  }
+  return total / arr.length;
+}
+
+function FindMode(arr) {
+  //Finds mode or modes in arr.
+  let maxCount = 0; 
+  let modus = [];
+
+  for(let i = 0; i < arr.length; i++){
+      let series = 0;
+      for(let j = i + 1; j < arr.length; j++){
+          if(arr[i] === arr[j]){
+            ++series;
+          }
+      }
+      if (series > maxCount){
+          maxCount = series;
+          modus=[];
+          modus.push(arr[i]);
+      }else if(series == maxCount){
+          modus.push(" " + arr[i]);
+      }
+  }
+  return modus;
+}
+
+function FindMedian(arr) {
+  const sorted = Array.from(arr).sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 === 0) {
+      return (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+  return sorted[middle];
+}
+
 function QLimitRepeats(arr, x) {
   //Ensures no repeat question until at least 50% of questions in calling module have been shown.
   //'arr' stores previous questions for calling module. 'x' is the number of questions in the calling module.
@@ -792,20 +833,6 @@ function testsumshow(sumType, qnum) {
     case "conv":
       sumData = conv();
       break;
-    case "trig":
-      document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
-      document.getElementById('myCanvasq' + qnum).height = '375';
-      document.getElementById('myCanvasq' + qnum).width = '450';
-      ctx = document.getElementById('myCanvasq' + qnum).getContext('2d');
-      document.getElementById('myCanvasqa' + qnum).style.visibility = 'visible';
-      document.getElementById('myCanvasqa' + qnum).height = '375';
-      document.getElementById('myCanvasqa' + qnum).width = '450';
-      ctx2 = document.getElementById('myCanvasqa' + qnum).getContext('2d');
-      sumData = trig(ctx);
-      // sumData[0] = sumData[0] + '<br>'.repeat(10);    //Makes space for canvas between this and next q, in pre-print view
-      ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
-      sumData[1] = sumData[1].replace("<br>".repeat(16), "");     //Removes lead in <br>'s from solution
-      break;
     case "prop":
       sumData = prop();
       break;
@@ -1000,7 +1027,6 @@ function testshow() {
   //Called on page load. Gets test design from testCreate and cycles through list
   let data = sessionStorage.getItem("testArr"); //Passed from testCreate as json string
   const testOrder = JSON.parse(data);
-  // totalq = testOrder.length;
   var qnum = 1;
   var qdiv = document.createElement("div");
   qdiv.id = 'q';
@@ -1008,7 +1034,7 @@ function testshow() {
   var adiv = document.createElement("div");
   adiv.id = 'a';
   document.body.appendChild(adiv);
-  for (var i = 0; i < testOrder.length; i++) {
+  for (let i of testOrder) {
     switch (testOrder[i]) {
       case "Non-Calculator Maths":
         sumAuth('noncalc', qnum);

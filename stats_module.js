@@ -4,8 +4,9 @@ function stats(ctx) {
     var sum, a, b, c, d, e;
     sumq = "";
     suma = "";
-    sumarrstats = QLimitRepeats(sumarrstats, 3);   //Ensures no repeat question until at least 50% of questions shown
+    sumarrstats = QLimitRepeats(sumarrstats, 4);   //Ensures no repeat question until at least 50% of questions shown
     sum = sumarrstats[sumarrstats.length - 1];
+    // sum = 4;
     switch(sum) {
         case 1:
             do{
@@ -145,6 +146,27 @@ function stats(ctx) {
                 suma += "b&.\\ Probability\\ of\\ selecting\\ red=\\frac{15}{21}=\\frac{5}{7}\\\\[5pt]";
                 suma += "c&.\\ Probability\\ of\\ selecting\\ a\\ ball\\ that\\ isn't\\ red=\\frac{21-15}{21}=\\frac{6}{21}=\\frac{2}{7}";
                 suma += "\\end{aligned}$$";
+                break;
+            case 4:
+                let arr = [];
+                let j = rndgen(6, 12, 0, 1, -1);    //Varies number of elements.
+                for (let i = 0; i < j; i++) {
+                    arr[i] = rndgen(1, 6, 0, 1, -1);
+                }
+                var mode = FindMode(arr);
+                sumq += "Find the mean, mode or modes & median of the following list: <br>" + arr;
+                let mean = FindMean(arr);
+                if (mean === dp(mean, 0, -1)) {
+                    suma += "The mean is " + mean + "<br>";
+                } else {
+                    suma += "The mean is " + dp(FindMean(arr), 2, -1) + " (2 dp)<br>";
+                }
+                if (mode.length === 1) {
+                    suma += "The mode is " + mode + "<br>";
+                } else {
+                    suma += "The modes are " + mode + "<br>";
+                }
+                suma += "The median is " + FindMedian(arr);
                 break;
     }
     var notesLink = "images/20230706-MathsBook08Proportionv1_6-APO.pdf#page=4";
