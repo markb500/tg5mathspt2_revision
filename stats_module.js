@@ -166,8 +166,8 @@ function stats(ctx) {
                 } else {
                     suma += "The modes are " + mode + "<br>";
                 }
-                suma += "The median is " + FindMedian(arr);
-                suma += "This question still to be further developed.";
+                suma += "The median is " + FindMedian(arr) + "<br>";
+                suma += "<br>This question still to be further developed.";
                 break;
     }
     var notesLink = "images/20230706-MathsBook08Proportionv1_6-APO.pdf#page=4";
