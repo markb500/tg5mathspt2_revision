@@ -3,9 +3,9 @@ function logs() {
     sumq = "";
     suma = "";
     let comdenom;
-    sumarrlogs1 = QLimitRepeats(sumarrlogs1, 11);   //Ensures no repeat question until at least 50% of questions shown
+    sumarrlogs1 = QLimitRepeats(sumarrlogs1, 12);   //Ensures no repeat question until at least 50% of questions shown
     var sum = sumarrlogs1[sumarrlogs1.length - 1];
-    // sum = 11;
+    // sum = 12;
     switch(sum) {
         case 1:
             do {
@@ -137,6 +137,19 @@ function logs() {
             suma += "$$\\begin{aligned}xlog(20)&=log(" + a + "\\times" + b + ")\\\\[5pt]";
             suma += "x&=\\frac{log(" + (a * b) + ")}{log(20)}\\\\[5pt]";
             suma += "&=" + dp((Math.log10(a * b)) / Math.log10(20), 3, -1) + "\\\\[5pt]";
+            suma += "\\end{aligned}$$";
+            break;
+        case 12:
+            do {
+                a = rndgen(1, 9, 0, 1, -1);
+            } while (dp((Math.log(a)) / 3, 3, -1) < 0.01);
+            sumq += "Find the value of x in the following equation, rounding your answer to 3 decimal places where appropriate.";
+            sumq += "$$e^{3x}=" + a + "$$";
+            suma += "$$\\begin{aligned}\\ln e^{3x}&=\\ln" + a + "\\\\[5pt]";
+            suma += "3x\\ln e&=\\ln" + a + "\\\\[5pt]";
+            suma += "3x&=\\ln" + a + "\\\\[5pt]";
+            suma += "x&=\\frac{\\ln" + a + "}{3}\\\\[5pt]";
+            suma += "&=" + (dp((Math.log(a)) / 3, 3, 3)) + "\\ (3\\ dp)\\\\[5pt]";
             suma += "\\end{aligned}$$";
             break;
     }
