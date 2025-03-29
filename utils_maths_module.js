@@ -788,11 +788,16 @@ function testsumshow(sumType, qnum) {
     case "transposeII":
       sumData = transposeII();
       break;
-    case "solve1":
-      sumData = solve1();
+    case "simultaneous":
+      document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasa' + qnum).height = '400';
+      document.getElementById('myCanvasa' + qnum).width = '400';
+      ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
+      sumData = simultaneous(ctx2);
+      sumData[1] = sumData[1].replace("<br>".repeat(14), "");     //Removes lead in <br>'s from solution
       break;
-    case "quadratics":
-      sumData = quadratics();
+    case "logs":
+      sumData = logs();
       break;
     case "straightgraph":
       document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
@@ -830,32 +835,12 @@ function testsumshow(sumType, qnum) {
       ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
       sumData[1] = sumData[1].replace("<br>".repeat(16), "");     //Removes lead in <br>'s from solution
       break;
-    case "conv":
-      sumData = conv();
-      break;
-    case "prop":
-      sumData = prop();
-      break;
     case "sincosgraph":
       document.getElementById('myCanvasa' + qnum).height="600";
       document.getElementById('myCanvasa' + qnum).width="600";
       document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
       ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
       sumData = sincosgraph(ctx2);
-      break;
-    case "statistics":
-      document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
-      document.getElementById('myCanvasq' + qnum).height = '500';
-      document.getElementById('myCanvasq' + qnum).width = '500';
-      ctx = document.getElementById('myCanvasq' + qnum).getContext('2d');
-      document.getElementById('myCanvasqa' + qnum).style.visibility = 'visible';
-      document.getElementById('myCanvasqa' + qnum).height = '500';
-      document.getElementById('myCanvasqa' + qnum).width = '500';
-      ctx2 = document.getElementById('myCanvasqa' + qnum).getContext('2d');
-      sumData = stats(ctx);
-      // sumData[0] = sumData[0] + '<br>'.repeat(6);    //Makes space for canvas between this and next q, in pre-print view
-      sumData[1] = sumData[1].replace("<br>".repeat(9), "");     //Removes lead in <br>'s from solution
-      ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
       break;
     case "areavol":
       document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
@@ -869,6 +854,26 @@ function testsumshow(sumType, qnum) {
       sumData = areavol(ctx);
       // sumData[0] = sumData[0] + '<br>'.repeat(6);    //Makes space for canvas between this and next q, in pre-print view
       sumData[1] = sumData[1].replace("<br>".repeat(13), "");     //Removes lead in <br>'s from solution
+      ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
+      break;
+    case "differentiation":
+      sumData = differentiation();
+      break;
+    case "integration":
+      sumData = integration();
+      break;
+    case "statistics":
+      document.getElementById('myCanvasq' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasq' + qnum).height = '500';
+      document.getElementById('myCanvasq' + qnum).width = '500';
+      ctx = document.getElementById('myCanvasq' + qnum).getContext('2d');
+      document.getElementById('myCanvasqa' + qnum).style.visibility = 'visible';
+      document.getElementById('myCanvasqa' + qnum).height = '500';
+      document.getElementById('myCanvasqa' + qnum).width = '500';
+      ctx2 = document.getElementById('myCanvasqa' + qnum).getContext('2d');
+      sumData = stats(ctx);
+      // sumData[0] = sumData[0] + '<br>'.repeat(6);    //Makes space for canvas between this and next q, in pre-print view
+      sumData[1] = sumData[1].replace("<br>".repeat(9), "");     //Removes lead in <br>'s from solution
       ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
       break;
   }
@@ -914,7 +919,7 @@ function sumAuth(sumtype, qnum) {
         document.getElementById('q' + whichQ).innerHTML = whichQ + '.  ' + sumData[0];
         document.getElementById('ai' + (whichQ)).innerHTML = whichQ + '.  ' + sumData[0] + "<br>";
         document.getElementById('aii' + (whichQ)).innerHTML = sumData[1];
-        eqnformat();                      //Re-runs mathjax formatting
+        eqnformat(type);                      //Re-runs mathjax formatting
       })
       document.getElementById("qdiv" + qnum).appendChild(button);
 
@@ -1035,37 +1040,13 @@ function testshow() {
   adiv.id = 'a';
   document.body.appendChild(adiv);
   for (let i of testOrder) {
-    switch (testOrder[i]) {
-      case "Non-Calculator Maths":
-        sumAuth('noncalc', qnum);
-        qnum = qnum + 1;
-        break;
-      case "Fractions":
-        sumAuth('fracs', qnum);
-        qnum = qnum + 1;
-        break;
-      case "Percentages &amp; Ratios":
-        sumAuth('percentratio', qnum);
-        qnum = qnum + 1;
-        break;
+    switch (i) {
       case "Indices":
         sumAuth('indices', qnum);
         qnum = qnum + 1;
         break;
-      case "Number Form":
-        sumAuth('numform', qnum);
-        qnum = qnum + 1;
-        break;
       case "HCF/LCM":
         sumAuth('hcflcm', qnum);
-        qnum = qnum + 1;
-        break;
-      case "Algebra: Solve Equation":
-        sumAuth('solve1', qnum);
-        qnum = qnum + 1;
-        break;
-      case "Quadratics":
-        sumAuth('quadratics', qnum);
         qnum = qnum + 1;
         break;
       case "Transposition I":
@@ -1076,34 +1057,54 @@ function testshow() {
         sumAuth('transposeII', qnum);
         qnum = qnum + 1;
         break;
-      case "Errors &amp; Conversions":
-        sumAuth('conv', qnum);
+      case "Algebra: Solve Equation":
+        sumAuth('solve1', qnum);
         qnum = qnum + 1;
         break;
-      case "RA Triangle Trigonometry":
-        sumAuth('trig', qnum);
+      case "Quadratics":
+        sumAuth('quadratics', qnum);
         qnum = qnum + 1;
         break;
-      case "Proportionality":
-        sumAuth('prop', qnum);
+      case "Simultaneous Equations":
+        sumAuth('simultaneous', qnum);
         qnum = qnum + 1;
         break;
-      case "Sin/Cos Graphs":
-        sumAuth('sincosgraph', qnum);
+      case "Logarithms":
+        sumAuth('logs', qnum);
         qnum = qnum + 1;
         break;
       case "Straight Line Graphs":
         sumAuth('straightgraph', qnum);
         qnum = qnum + 1;
         break;
-        case "Statistics":
-          sumAuth('statistics', qnum);
-          qnum = qnum + 1;
-          break;
+      case "RA Triangle Trigonometry":
+        sumAuth('trig', qnum);
+        qnum = qnum + 1;
+        break;
+      case "Non-RA Triangle Trigonometry":
+        sumAuth('nonratrig', qnum);
+        qnum = qnum + 1;
+        break;
+      case "Sin/Cos Graphs":
+        sumAuth('sincosgraph', qnum);
+        qnum = qnum + 1;
+        break;
       case "Surface Area &amp; Volume":
         sumAuth('areavol', qnum);
         qnum = qnum + 1;
         break;
+      case "Differentiation":
+        sumAuth('differentiation', qnum);
+        qnum = qnum + 1;
+        break;
+      case "Integration":
+        sumAuth('integration', qnum);
+        qnum = qnum + 1;
+        break;
+        case "Statistics":
+          sumAuth('statistics', qnum);
+          qnum = qnum + 1;
+          break;
     }
   }
   eqnformat('t'); //Ensures MathJax has formatted all sums in test
