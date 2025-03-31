@@ -4,8 +4,10 @@ function conv() {
     var sum;
     sumq = "";
     suma = "";
-    sumarrconv = QLimitRepeats(sumarrconv, 7);   //Ensures no repeat question until at least 50% of questions shown
-    sum = sumarrconv[sumarrconv.length - 1];
+    arrRads = [];
+//     sumarrconv = QLimitRepeats(sumarrconv, 7);   //Ensures no repeat question until at least 50% of questions shown
+//     sum = sumarrconv[sumarrconv.length - 1];
+sum = 8;
     switch(sum) {
         case 1:     //Absolute & relative error - Kinetic Energy
             var notesLink = "images/20200504-MathsBook6ErrConvv1_3-APO.pdf#page=3";
@@ -114,6 +116,58 @@ function conv() {
                         qdata[sel][1] + "\\ (1\\ dp)}}\\end{aligned}$$";
             }
             break;
+        case 8:     //Convert degrees <--> radians
+            arrRads = [
+                ["10", "\\frac{&pi;}{18}"], 
+                ["20", "\\frac{&pi;}{9}"], 
+                ["30", "\\frac{&pi;}{6}"], 
+                ["40", "\\frac{2&pi;}{9}"], 
+                ["50", "\\frac{5&pi;}{18}"], 
+                ["60", "\\frac{&pi;}{3}"], 
+                ["70", "\\frac{7&pi;}{18}"], 
+                ["80", "\\frac{4&pi;}{9}"], 
+                ["90", "\\frac{&pi;}{2}"], 
+                ["100", "\\frac{5&pi;}{9}"], 
+                ["110", "\\frac{11&pi;}{18}"], 
+                ["120", "\\frac{2&pi;}{3}"], 
+                ["130", "\\frac{13&pi;}{18}"], 
+                ["140", "\\frac{7&pi;}{9}"], 
+                ["150", "\\frac{5&pi;}{6}"], 
+                ["160", "\\frac{8&pi;}{9}"], 
+                ["170", "\\frac{17&pi;}{18}"], 
+                ["180", "&pi;"], 
+                ["190", "\\frac{19&pi;}{18}"], 
+                ["200", "\\frac{10&pi;}{9}"], 
+                ["210", "\\frac{7&pi;}{6}"], 
+                ["220", "\\frac{11&pi;}{9}"], 
+                ["230", "\\frac{23&pi;}{18}"], 
+                ["240", "\\frac{4&pi;}{3}"], 
+                ["250", "\\frac{25&pi;}{18}"], 
+                ["260", "\\frac{13&pi;}{9}"], 
+                ["270", "\\frac{3&pi;}{2}"], 
+                ["280", "\\frac{14&pi;}{9}"], 
+                ["290", "\\frac{29&pi;}{18}"], 
+                ["300", "\\frac{5&pi;}{3}"], 
+                ["310", "\\frac{31&pi;}{18}"], 
+                ["320", "\\frac{16&pi;}{9}"], 
+                ["330", "\\frac{11&pi;}{6}"], 
+                ["340", "\\frac{17&pi;}{9}"], 
+                ["350", "\\frac{35&pi;}{18}"], 
+                ["360", "2&pi;"], 
+            ];
+            let i = rndgen(0, arrRads.length - 1, 0, 1, -1);    //Random index to select from arrRads
+            switch(rndgen(1, 2, 0, 1, -1)) {
+                case 1:     //degs to rads
+                    sumq += "$$\\text{Convert }" + arrRads[i][0] + "\xB0\\text{ to radians.}$$";
+                    suma += "$$\\begin{aligned}&=" + arrRads[i][0] + "\\times\\frac{&pi;}{180}\\\\[5pt]";
+                    suma += "&=" + arrRads[i][1] + "\\end{aligned}$$";
+                    break;
+                case 2:     //rads to degs
+                    sumq += "$$\\text{Convert }" + arrRads[i][1] + "\\text{ rads to degrees.}$$";
+                    suma += "$$\\begin{aligned}&=" + arrRads[i][1] + "\\times\\frac{180}{&pi;}\\\\[5pt]";
+                    suma += "&=" + arrRads[i][0] + "^o\\end{aligned}$$";
+                    break;
+            }
     }
     var sumArray = [sumq, suma, notesLink];
     return sumArray;
