@@ -208,7 +208,7 @@ function transposeII() {
             break;
 
         case 23:
-            sumq += "Transpose the following to make x the subject.";
+            sumq += "Transpose the following to make c the subject.";
             sumq += "$$10^{3c}=2d$$";
             suma += "$$\\begin{aligned}Log_{\\tiny 10}10^{3c}=Log_{\\tiny 10}2d\\\\[5pt]";
             suma += "3cLog_{\\tiny 10}10=Log_{\\tiny 10}2d\\\\[5pt]";
