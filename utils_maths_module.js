@@ -930,7 +930,7 @@ function sumAuth(sumtype, qnum) {
         document.getElementById('q' + whichQ).innerHTML = whichQ + '.  ' + sumData[0];
         document.getElementById('ai' + (whichQ)).innerHTML = whichQ + '.  ' + sumData[0] + "<br>";
         document.getElementById('aii' + (whichQ)).innerHTML = sumData[1];
-        eqnformat(type);                      //Re-runs mathjax formatting
+        eqnformat();                      //Re-runs mathjax formatting
       })
       document.getElementById("qdiv" + qnum).appendChild(button);
 
