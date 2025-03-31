@@ -846,6 +846,9 @@ function testsumshow(sumType, qnum) {
       ctx2.drawImage(document.getElementById('myCanvasq' + qnum), 0, 0);  //Shows q image in solution
       sumData[1] = sumData[1].replace("<br>".repeat(16), "");     //Removes lead in <br>'s from solution
       break;
+    case "conv":
+      sumData = conv();
+      break;
     case "sincosgraph":
       document.getElementById('myCanvasa' + qnum).height="600";
       document.getElementById('myCanvasa' + qnum).width="600";
@@ -1094,6 +1097,10 @@ function testshow() {
         break;
       case "Non-RA Triangle Trigonometry":
         sumAuth('nonratrig', qnum);
+        qnum = qnum + 1;
+        break;
+      case "Conversions":
+        sumAuth('conv', qnum);
         qnum = qnum + 1;
         break;
       case "Sin/Cos Graphs":
