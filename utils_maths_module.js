@@ -770,6 +770,7 @@ function sumshow(sumType, h1, w1, h2, w2) {
 
 function testsumshow(sumType, qnum) {
   //Called by sumAuth, used in test creation. Gets required sum and sets up canvas if required.
+  let ctx, ctx2;
   switch (sumType) {
     case "indices":
       sumData = indices();
@@ -781,6 +782,16 @@ function testsumshow(sumType, qnum) {
       ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
       sumData = hcflcm(ctx2);
       sumData[1] = sumData[1].replace("<br>".repeat(12), "");     //Removes lead in <br>'s from solution
+      break;
+    case "solve1":
+      sumData = solve1();
+      break;
+    case "quadratics":
+      document.getElementById('myCanvasa' + qnum).height="300";
+      document.getElementById('myCanvasa' + qnum).width="300";
+      document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
+      ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
+      sumData = quadratics(ctx2);
       break;
     case "transposeI":
       sumData = transposeI();
