@@ -107,6 +107,8 @@ function quadratics(ctx2) {
           x2 = "-\\frac{" + d + "}{" + c + "}"
         }
       }
+      ctx2.fillStyle = "red";
+      ctx2.strokeStyle = "red";
       ctx2.font = "20px Comic Sans MS";
       ctx2.lineWidth = 3;
       ctx2.beginPath();
