@@ -3,7 +3,7 @@ function sincosgraph(ctx2) {
   let sum, sumq = "", suma = "", ang1, ang2, trigRatio, sin, cos, tan;
   sumarrsincos = QLimitRepeats(sumarrsincos, 29);   //Ensures no repeat question until at least 50% of questions shown
   sum = sumarrsincos[sumarrsincos.length - 1];
-  // sum = 40;
+  // sum = 16;
   switch(sum) {
     case 1:
       sumq += "Sketch the graph of y = Sin(&theta;) from 0<sup>O</sup> to 360<sup>O</sup>";
@@ -69,10 +69,10 @@ function sincosgraph(ctx2) {
       sumq += "Sketch the graph of y = -0.75Cos(&theta;) from 0<sup>O</sup> to 360<sup>O</sup>";
       ctx2.drawImage(yminus0_75cosx, 0, 0, 600, 600);
       break;
-      case 17:
-        sumq += "Sketch the graph of y = Tan(&theta;) from 0<sup>O</sup> to 360<sup>O</sup>";
-        ctx2.drawImage(ytanx, 0, 0, 600, 600);
-        break;
+    case 17:
+      sumq += "Sketch the graph of y = Tan(&theta;) from 0<sup>O</sup> to 360<sup>O</sup>";
+      ctx2.drawImage(ytanx, 0, 0, 600, 600);
+      break;
     case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29:  //Examples of finding all angles 0 to 360 using CAST
       ctx2.drawImage(CAST, 0, 0, 600, 600);
       do {
