@@ -78,6 +78,7 @@ function sincosgraph(ctx2) {
       do {
         ang1 = rndgen(0, 360, 0, 5, -1);
       } while (ang1 === 0 || ang1 === 90 || ang1 === 180 || ang1 === 270 || ang1 === 360);
+      suma += "<br>".repeat(8);
       trigRatio = rndgen(1, 3, 0, 1, -1);   //1 = Sin, 2 = Cos, 3 = Tan
       if (trigRatio === 1) {  //Sin
         sin = dp(Math.sin(ang1 * (Math.PI / 180)), 4, -1);
