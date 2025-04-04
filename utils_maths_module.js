@@ -1030,7 +1030,7 @@ function sumAuth(sumtype, qnum) {
   if (qnum % 2 === 0) {
     var adivoddsize = document.getElementById('adiv' + (qnum - 1)).offsetHeight;  // Height of odd-numbered answer div, inc question
     var adivevensize = document.getElementById('adiv' + qnum).offsetHeight;   // Height of even-numbered answer div, inc question
-    if (adivoddsize > 280 || adivevensize > 280) {
+    if (adivoddsize > 330 || adivevensize > 330) {
       document.getElementById('apagediv' + (qnum - 1) + qnum).style = 'page-break-after:avoid';   //Allow apagediv to stretch
       document.getElementById('adiv' + (qnum - 1)).classList.add('pagebreak');  // Ensure odd and even answers on different pages
       document.getElementById('adiv' + (qnum)).classList.remove('midpage');   // Remove requirement for even answer  to start at 50% height of apagediv
