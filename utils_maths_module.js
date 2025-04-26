@@ -713,9 +713,9 @@ function sumshow(sumType, h1, w1, h2, w2) {
     case "logs":
       sumData = logs();
       break;
-    case "straightgraph":
+    case "graph":
       ctx2 = myCanvas2.getContext('2d');
-      sumData = straightgraph(ctx2);
+      sumData = graph(ctx2);
       break;
     case "trig":
       ctx = myCanvas.getContext('2d');
@@ -810,12 +810,12 @@ function testsumshow(sumType, qnum) {
     case "logs":
       sumData = logs();
       break;
-    case "straightgraph":
+    case "graph":
       document.getElementById('myCanvasa' + qnum).style.visibility = 'visible';
       document.getElementById('myCanvasa' + qnum).height = '400';
       document.getElementById('myCanvasa' + qnum).width = '400';
       ctx2 = document.getElementById('myCanvasa' + qnum).getContext('2d');
-      sumData = straightgraph(ctx2);
+      sumData = graph(ctx2);
       sumData[1] = sumData[1].replace("<br>".repeat(14), "");     //Removes lead in <br>'s from solution
       break;
     case "trig":
@@ -1087,8 +1087,8 @@ function testshow() {
         sumAuth('logs', qnum);
         qnum = qnum + 1;
         break;
-      case "Straight Line Graphs":
-        sumAuth('straightgraph', qnum);
+      case "Graphs":
+        sumAuth('graph', qnum);
         qnum = qnum + 1;
         break;
       case "RA Triangle Trigonometry":
