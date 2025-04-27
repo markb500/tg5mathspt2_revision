@@ -1087,7 +1087,7 @@ function testshow() {
         sumAuth('logs', qnum);
         qnum = qnum + 1;
         break;
-      case "Graphs":
+      case "Straight and Exponential Graphs":
         sumAuth('graph', qnum);
         qnum = qnum + 1;
         break;
