@@ -27,7 +27,6 @@ function nonratrig(ctx) {
             var a = rndgen(10, 150, 2, 0.01, -1);
             var b = dp((a * Math.sin(B * Math.PI / 180)) / Math.sin(A * Math.PI / 180), 2, -1);
             var c = dp((a * Math.sin(C * Math.PI / 180)) / Math.sin(A * Math.PI / 180), 2, -1);
-            sumq += "A = " + A + " B = " + B + " C = " + C + " a = " + a + " b = " + b + " c = " + c + "<br>";
             top = 50;
             left = 50;
             right = 275;
