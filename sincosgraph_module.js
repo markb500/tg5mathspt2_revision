@@ -122,17 +122,17 @@ function sincosgraph(ctx2) {
         } else if (ang1 > 90 && ang1 < 180) {
           ang2 = 270 - (ang1 - 90);
           suma += "$$\\begin{aligned}\\text{Cos(&theta;) is negative in quadrants 2 and 3 so:}\\\\[5pt]";
-          suma += "Cos^{-1}(" + -cos + ")&=" + (ang1 - 90) + "^o\\\\[5pt]";
-          suma += "90+" + (ang1 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "Cos^{-1}(" + cos + ")&=" + ang1 + "^o\\\\[5pt]";
+          //suma += "90+" + (ang1 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "270-" + (ang1 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "360-" + ang1 + "&=" + ang2 + "^o\\\\[5pt]";
         } else if (ang1 > 180 && ang1 < 270) {
-          ang2 = 90 + (270 - ang1);
+          ang2 = 360 - ang1;
           suma += "$$\\begin{aligned}\\text{Cos(&theta;) is negative in quadrants 2 and 3 so:}\\\\[5pt]";
-          suma += "Cos^{-1}(" + -cos + ")&=" + (ang2 - 90) + "^o\\\\[5pt]";
-          suma += "90+" + (ang2 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "Cos^{-1}(" + cos + ")&=" + ang2 + "^o\\\\[5pt]";
+          //suma += "90+" + (ang2 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "270-" + (ang2 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "360-" + ang2 + "&=" + ang1 + "^o\\\\[5pt]";
         } else {
           ang2 = 0 + (360 - ang1);
           suma += "$$\\begin{aligned}\\text{Cos(&theta;) is positive in quadrants 1 and 4 so:}\\\\[5pt]";
