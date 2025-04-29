@@ -3,7 +3,6 @@ function sincosgraph(ctx2) {
   let sum, sumq = "", suma = "", ang1, ang2, trigRatio, sin, cos, tan;
   sumarrsincos = QLimitRepeats(sumarrsincos, 29);   //Ensures no repeat question until at least 50% of questions shown
   sum = sumarrsincos[sumarrsincos.length - 1];
-  // sum = 16;
   switch(sum) {
     case 1:
       sumq += "Sketch the graph of y = Sin(&theta;) from 0<sup>O</sup> to 360<sup>O</sup>";
@@ -98,17 +97,17 @@ function sincosgraph(ctx2) {
         } else if (ang1 > 180 && ang1 < 270) {
           ang2 = 360 - (ang1 - 180);
           suma += "$$\\begin{aligned}\\text{Sin(&theta;) is negative in quadrants 3 and 4 so:}\\\\[5pt]";
-          suma += "Sin^{-1}(" + -sin + ")&=" + (ang1 - 180) + "^o\\\\[5pt]";
-          suma += "180+" + (ang1 - 180) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "Sin^{-1}(" + sin + ")&=" + (180 - ang1) + "^o\\\\[5pt]";
+          suma += "&=" + ang2 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "360-" + (ang1 - 180) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "180+" + (ang1 - 180) + "&=" + ang1 + "^o\\\\[5pt]";
         } else {
           ang2 = 180 + (360 - ang1);
           suma += "$$\\begin{aligned}\\text{Sin(&theta;) is negative in quadrants 3 and 4 so:}\\\\[5pt]";
-          suma += "Sin^{-1}(" + -sin + ")&=" + (ang2 - 180) + "^o\\\\[5pt]";
-          suma += "180+" + (ang2 - 180) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "Sin^{-1}(" + sin + ")&=" + (180 - ang2) + "^o\\\\[5pt]";
+          suma += "&=" + ang1 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "360-" + (ang2 - 180) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "180+" + (ang2 - 180) + "&=" + ang2 + "^o\\\\[5pt]";
         }
       } else if (trigRatio === 2) {  //Cos
         cos = dp(Math.cos(ang1 * (Math.PI / 180)), 4, -1);
@@ -120,17 +119,15 @@ function sincosgraph(ctx2) {
           suma += "\\text{and}\\\\[5pt]";
           suma += "360-" + ang1 + "&=" + ang2 + "^o\\\\[5pt]";
         } else if (ang1 > 90 && ang1 < 180) {
-          ang2 = 270 - (ang1 - 90);
+          ang2 = 360 - ang1;
           suma += "$$\\begin{aligned}\\text{Cos(&theta;) is negative in quadrants 2 and 3 so:}\\\\[5pt]";
           suma += "Cos^{-1}(" + cos + ")&=" + ang1 + "^o\\\\[5pt]";
-          //suma += "90+" + (ang1 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
           suma += "360-" + ang1 + "&=" + ang2 + "^o\\\\[5pt]";
         } else if (ang1 > 180 && ang1 < 270) {
           ang2 = 360 - ang1;
           suma += "$$\\begin{aligned}\\text{Cos(&theta;) is negative in quadrants 2 and 3 so:}\\\\[5pt]";
           suma += "Cos^{-1}(" + cos + ")&=" + ang2 + "^o\\\\[5pt]";
-          //suma += "90+" + (ang2 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
           suma += "360-" + ang2 + "&=" + ang1 + "^o\\\\[5pt]";
         } else {
@@ -152,10 +149,10 @@ function sincosgraph(ctx2) {
         } else if (ang1 > 90 && ang1 < 180) {
           ang2 = ang1 + 180;
           suma += "$$\\begin{aligned}\\text{Tan(&theta;) is negative in quadrants 2 and 4 so:}\\\\[5pt]";
-          suma += "Tan^{-1}(" + -tan + ")&=" + (ang1 - 90) + "^o\\\\[5pt]";
-          suma += "90+" + (ang1 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "Tan^{-1}(" + tan + ")&=" + (ang1 - 180) + "^o\\\\[5pt]";
+          suma += "180-" + (180 - ang1) + "&=" + ang1 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "270+" + (ang1 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "180+" + ang1 + "&=" + ang2 + "^o\\\\[5pt]";
         } else if (ang1 > 180 && ang1 < 270) {
           ang2 = ang1 - 180;
           suma += "$$\\begin{aligned}\\text{Tan(&theta;) is positive in quadrants 1 and 3 so:}\\\\[5pt]";
@@ -165,10 +162,10 @@ function sincosgraph(ctx2) {
         } else {
           ang2 = ang1 - 180;
           suma += "$$\\begin{aligned}\\text{Tan(&theta;) is negative in quadrants 2 and 4 so:}\\\\[5pt]";
-          suma += "Tan^{-1}(" + -tan + ")&=" + (ang2 - 90) + "^o\\\\[5pt]";
-          suma += "90+" + (ang2 - 90) + "&=" + ang2 + "^o\\\\[5pt]";
+          suma += "Tan^{-1}(" + tan + ")&=" + (ang2 - 180) + "^o\\\\[5pt]";
+          suma += "180-" + (180 - ang2) + "&=" + ang2 + "^o\\\\[5pt]";
           suma += "\\text{and}\\\\[5pt]";
-          suma += "270+" + (ang2 - 90) + "&=" + ang1 + "^o\\\\[5pt]";
+          suma += "180+" + ang2 + "&=" + ang1 + "^o\\\\[5pt]";
         }
       }
       suma += "\\end{aligned}$$";
