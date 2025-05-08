@@ -7,9 +7,9 @@ function stats(ctx) {
     let arr = [], arr2 = [];
     let mean;
     let sumvar;
-    sumarrstats = QLimitRepeats(sumarrstats, 5);   //Ensures no repeat question until at least 50% of questions shown
+    sumarrstats = QLimitRepeats(sumarrstats, 4);   //Ensures no repeat question until at least 50% of questions shown
     sum = sumarrstats[sumarrstats.length - 1];
-    // sum = 5;
+    // sum = 4;
     switch(sum) {
         case 1:
             do{
@@ -141,16 +141,16 @@ function stats(ctx) {
                 ctx.stroke();
             }
             break;
+            // case 3:
+            //     sumq += "A snooker table has 15 red balls and 1 each of yellow, brown, green, blue, pink and black balls. If the balls are placed in ";
+            //     sumq += "a bag and 1 ball is selected at random, calculate the probability of selecting:<br>a. a blue ball.<br>b. a red ball<br>c. a non-red ball.";
+            //     suma += "$$Total\\ number\\ of\\ balls = 21$$";
+            //     suma += "$$\\begin{aligned}a&.\\ Probability\\ of\\ selecting\\ blue=\\frac{1}{21}\\\\[5pt]";
+            //     suma += "b&.\\ Probability\\ of\\ selecting\\ red=\\frac{15}{21}=\\frac{5}{7}\\\\[5pt]";
+            //     suma += "c&.\\ Probability\\ of\\ selecting\\ a\\ ball\\ that\\ isn't\\ red=\\frac{21-15}{21}=\\frac{6}{21}=\\frac{2}{7}";
+            //     suma += "\\end{aligned}$$";
+            //     break;
             case 3:
-                sumq += "A snooker table has 15 red balls and 1 each of yellow, brown, green, blue, pink and black balls. If the balls are placed in ";
-                sumq += "a bag and 1 ball is selected at random, calculate the probability of selecting:<br>a. a blue ball.<br>b. a red ball<br>c. a non-red ball.";
-                suma += "$$Total\\ number\\ of\\ balls = 21$$";
-                suma += "$$\\begin{aligned}a&.\\ Probability\\ of\\ selecting\\ blue=\\frac{1}{21}\\\\[5pt]";
-                suma += "b&.\\ Probability\\ of\\ selecting\\ red=\\frac{15}{21}=\\frac{5}{7}\\\\[5pt]";
-                suma += "c&.\\ Probability\\ of\\ selecting\\ a\\ ball\\ that\\ isn't\\ red=\\frac{21-15}{21}=\\frac{6}{21}=\\frac{2}{7}";
-                suma += "\\end{aligned}$$";
-                break;
-            case 4:
                 j = rndgen(6, 12, 0, 1, -1);    //Varies number of elements.
                 for (let i = 0; i < j; i++) {
                     arr[i] = rndgen(1, 6, 0, 1, -1);
@@ -174,7 +174,7 @@ function stats(ctx) {
                 }
                 suma += "The median is " + FindMedian(arr);
                 break;
-            case 5:
+            case 4:
                 arr = [];
                 arr2 = [];
                 j = rndgen(5, 7, 0, 1, -1);    //Varies number of elements.
