@@ -40,6 +40,7 @@ function differentiation() {
             if (arrn.length > Math.ceil(9)) {
               arrn.shift();
             }
+            sumq += "$$\\text{Given that, for }y=ax^n\\ \\ \\  \\frac{dy}{dx}=anx^{n-1}$$";
             if (a === 1) {
                 if (n === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=" + x + "$$";
@@ -88,7 +89,7 @@ function differentiation() {
             break;
         case 3:         //Double case to weight sum selection over single case options
         case 4:
-            //y = e^ax  dy / dx = ae^ax
+            //y = ne^ax  dy / dx = ane^ax
             if (rndgen(1, 2, 0, 1, -1) === 1) {
                 sFuncq1 = "Leibniz's notation";
                 sFuncq2 = "y";
@@ -113,6 +114,7 @@ function differentiation() {
             if (arrn.length > Math.ceil(9)) {
               arrn.shift();
             }
+            sumq += "$$\\text{Given that, for }y=ne^{ax}\\ \\ \\  \\frac{dy}{dx}=ane^{ax}$$";
             if (a === 1) {
                 if (n === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=e^x$$";
@@ -198,6 +200,7 @@ function differentiation() {
             }
             TrigRatio = rndgen(1, 3, 0, 1, -1);
             if (n > 0 && TrigRatio === 1) {         //Sin
+                sumq += "$$\\text{Given that, for }y=nSinax\\ \\ \\  \\frac{dy}{dx}=anCosax$$";
                 if (n === 1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Sinx$$";
                     suma += "$$\\begin{aligned}" + sFunca + "&=" + a + "\\times" + n + "Cosx\\\\[5pt]";
@@ -216,6 +219,7 @@ function differentiation() {
                     suma += "&=\\underline{\\mathbf{" + (a * n) + "Cos" + a + "x}}";
                 }
             } else if (n > 0 && TrigRatio === 2) {          //Cos
+                sumq += "$$\\text{Given that, for }y=nCosax\\ \\ \\  \\frac{dy}{dx}=-anSinax$$";
                 if (n === 1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Cosx$$";
                     suma += "$$\\begin{aligned}" + sFunca + "&=" + a + "\\times-" + n + "Sinx\\\\[5pt]";
@@ -234,6 +238,7 @@ function differentiation() {
                     suma += "&=\\underline{\\mathbf{-" + (a * n) + "Sin" + a + "x}}";
                 }
             } else if (n < 0 && TrigRatio === 1) {          //-Sin
+                sumq += "$$\\text{Given that, for }y=nSinax\\ \\ \\  \\frac{dy}{dx}=anCosax$$";
                 if (n === -1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=-Sinx$$";
                     suma += "$$\\begin{aligned}" + sFunca + "&=" + a + "\\times" + n + "Cosx\\\\[5pt]";
@@ -252,6 +257,7 @@ function differentiation() {
                     suma += "&=\\underline{\\mathbf{" + (a * n) + "Cos" + a + "x}}";
                 }
             } else if (n < 0 && TrigRatio === 2) {          //-Cos
+                sumq += "$$\\text{Given that, for }y=nCosax\\ \\ \\  \\frac{dy}{dx}=-anSinax$$";
                 if (n === -1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=-Cosx$$";
                     suma += "$$\\begin{aligned}" + sFunca + "&=" + a + "\\times" + Math.abs(n) + "Sinx\\\\[5pt]";
@@ -270,6 +276,7 @@ function differentiation() {
                     suma += "&=\\underline{\\mathbf{" + (a * Math.abs(n)) + "Sin" + a + "x}}";
                 }
             } else if (TrigRatio === 3) {           //Tan & -Tan
+                sumq += "$$\\text{Given that, for }y=nTanax\\ \\ \\  \\frac{dy}{dx}=anSec^2ax$$";
                 if (n === 1 && a === 1) {
                     sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Tanx$$";
                     suma += "$$\\begin{aligned}" + sFunca + "&=" + a + "\\times" + n + "Sec^2x\\\\[5pt]";
@@ -320,6 +327,7 @@ function differentiation() {
             if (arrn.length > Math.ceil(5)) {
               arrn.shift();
             }
+            sumq += "$$\\text{Given that, for }y=nLog_eax\\ \\ \\  \\frac{dy}{dx}=\\frac{n}{x}$$";
             if (n ===1 && a === 1) {
                 sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=Log_ex$$";
             } else if (n === 1 && a > 1) {
@@ -361,6 +369,7 @@ function differentiation() {
             do {
                 a1 = rndgen(-5, 5, 0, 1, -1);
             } while (a1 > -2 && a1 < 2)     //Not -1, 0 or 1
+            sumq += "$$\\text{Given that, for }y=ax^n\\ \\ \\  \\frac{dy}{dx}=anx^{n-1}$$";
             sumq += "$$\\text{Using " + sFuncq1 + ", differentiate }" + sFuncq2 + "=" + n1 + "x^{" + a1 + "}" + (n2 < 0?"-":"+") + 
                                                                         Math.abs(n2) + "x" + (n3 < 0?"-":"+") + Math.abs(n3) + "$$";
             suma += "$$\\begin{aligned}" + sFunca + "&=" + a1 + "\\times" + n1 + "x^{" + a1 + "-1}" + (n2 < 0?"-":"+") + "1\\times" + 
