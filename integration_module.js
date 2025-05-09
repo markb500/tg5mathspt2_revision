@@ -541,137 +541,137 @@ function integration() {
             sumq += "$$y=" + n1 + "x^{" + a1 + "}+" + n2 + "x+" + n3 + "$$";
             sumq += "$$\\text{between the limits " + upr + " and " + lwr + "}$$";
             suma += "$$\\begin{aligned}&\\int_" + lwr + "^" + upr + n1 + "x^{" + a1 + "}+" + n2 + "x+" + n3 + "\\ dx\\\\[5pt]";
-            suma += "&=\\left[\\frac{" + n1 + "x^" + (a1 + 1) + "}{" + (a1 + 1) + "}+\\frac{" + n2 + "x^2}{2}+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+            suma += "&=\\left[\\frac{" + n1 + "x^" + (a1 + 1) + "}{" + (a1 + 1) + "}+\\frac{" + n2 + "x^2}{2}+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
             if (n2 % 2 !== 0) {
                 if (denom1 !== 1) {
                     if (n1 === (a1 + 1)) {
-                        suma += "&=\\left[x^" + (a1 + 1) + "+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[x^" + (a1 + 1) + "+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + upr + "^" + (a1 + 1) + 
                                 "+\\frac{" + n2 + "\\times" + upr + "^2}{2}+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
-                                "+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
+                                "+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if (n1 / denom1 === 1) {
-                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+\\frac{" + n2 + "\\times" + upr + "^2}{2}+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if ((a1 + 1) / denom1 === 1) {
-                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + 
                                 "+\\frac{" + n2 + "\\times" + upr + "^2}{2}+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
-                                "+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
+                                "+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else {
-                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+\\frac{" + n2 + "x^{2}}{2}+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+\\frac{" + n2 + "\\times" + upr + "^2}{2}+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     }
                 } else {
                     suma += "&=\\left(\\frac{" + n1 + "\\times" + upr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
                             "}+\\frac{" + n2 + "\\times" + upr + "^2}{2}+" + n3 + "\\times" + upr + 
-                            "\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
-                            "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                    suma += "&=\\underline{\\mathbf{" + dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
-                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                            "+C\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
+                            "}+\\frac{" + n2 + "\\times" + lwr + "^2}{2}+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                    suma += "&=\\underline{\\mathbf{" + thouSep(dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (n2 * Math.pow(upr, 2)) / 2 + n3 * upr) - 
+                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (n2 * Math.pow(lwr, 2)) / 2 + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                 }
             } else if (n2 === 2) {
                 if (denom1 !== 1) {
                     if (n1 === (a1 + 1)) {
-                        suma += "&=\\left[x^" + (a1 + 1) + "+x^2+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[x^" + (a1 + 1) + "+x^2+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + upr + "^" + (a1 + 1) + 
                                 "+" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
-                                "+" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) + (Math.pow(upr, 2)) + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
+                                "+" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) + (Math.pow(upr, 2)) + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if (n1 / denom1 === 1) {
-                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(upr, 2)) + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(upr, 2)) + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if ((a1 + 1) / denom1 === 1) {
-                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + 
                                 "+" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
-                                "+" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (Math.pow(upr, 2)) + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
+                                "+" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (Math.pow(upr, 2)) + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else {
-                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(upr, 2)) + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(upr, 2)) + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     }
                 } else {
-                    suma += "&=\\left[\\frac{" + n1 + "x^{" + (a1 + 1) + "}}{" + (a1 + 1) + "}+x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                    suma += "&=\\left[\\frac{" + n1 + "x^{" + (a1 + 1) + "}}{" + (a1 + 1) + "}+x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                     suma += "&=\\left(\\frac{" + n1 + "\\times" + upr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
                             "}+" + upr + "^2+" + n3 + "\\times" + upr + 
-                            "\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
-                            "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                    suma += "&=\\underline{\\mathbf{" + dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (Math.pow(upr, 2)) + n3 * upr) - 
-                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                            "+C\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
+                            "}+" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                    suma += "&=\\underline{\\mathbf{" + thouSep(dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (Math.pow(upr, 2)) + n3 * upr) - 
+                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                 }
             } else if (n2 % 2 === 0) {
                 if (denom1 !== 1) {
                     if (n1 === (a1 + 1)) {
-                        suma += "&=\\left[x^" + (a1 + 1) + "+" + (n2 / 2) + "x^2+" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[x^" + (a1 + 1) + "+" + (n2 / 2) + "x^2+" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + upr + "^" + (a1 + 1) + 
                                 "+" + (n2 / 2) + "\\times" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
-                                "+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + lwr + "^" + (a1 + 1) + 
+                                "+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if (n1 / denom1 === 1) {
-                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+" + (n2 / 2) + "\\times" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
-                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp(((Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
+                                        ((Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else if ((a1 + 1) / denom1 === 1) {
-                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+" + (n2 / 2) + "x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[" + (n1 / denom1) + "x^" + (a1 + 1) + "+" + (n2 / 2) + "x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + 
                                 "+" + (n2 / 2) + "\\times" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
-                                "+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + 
+                                "+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     } else {
-                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                        suma += "&=\\left[\\frac{" + (n1 / denom1) + "x^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                         suma += "&=\\left(\\frac{" + (n1 / denom1) + "\\times" + upr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
                                 "}+" + (n2 / 2) + "\\times" + upr + "^2+" + n3 + "\\times" + upr + 
-                                "\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
-                                "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                        suma += "&=\\underline{\\mathbf{" + dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
-                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                                "+C\\right)-\\left(\\frac{" + (n1 / denom1) + "\\times" + lwr + "^" + (a1 + 1) + "}{" + ((a1 + 1) / denom1) + 
+                                "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                        suma += "&=\\underline{\\mathbf{" + thouSep(dp((((n1 / denom1) * Math.pow(upr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
+                                        (((n1 / denom1) * Math.pow(lwr, a1 + 1)) / ((a1 + 1) / denom1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                     }
                 } else {
-                    suma += "&=\\left[\\frac{" + n1 + "x^{" + (a1 + 1) + "}}{" + (a1 + 1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
+                    suma += "&=\\left[\\frac{" + n1 + "x^{" + (a1 + 1) + "}}{" + (a1 + 1) + "}+" + (n2 / 2) + "x^2 +" + n3 + "x+C\\right]_" + lwr + "^" + upr + "\\\\[5pt]";
                     suma += "&=\\left(\\frac{" + n1 + "\\times" + upr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
                             "}+" + (n2 / 2) + "\\times" + upr + "^2+" + n3 + "\\times" + upr + 
-                            "\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
-                            "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "\\right)\\\\[5pt]";
-                    suma += "&=\\underline{\\mathbf{" + dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
-                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1) + "}}\\\\[5pt]";
+                            "+C\\right)-\\left(\\frac{" + n1 + "\\times" + lwr + "^" + (a1 + 1) + "}{" + (a1 + 1) + 
+                            "}+" + (n2 / 2) + "\\times" + lwr + "^2+" + n3 + "\\times" + lwr + "+C\\right)\\\\[5pt]";
+                    suma += "&=\\underline{\\mathbf{" + thouSep(dp(((n1 * Math.pow(upr, a1 + 1)) / (a1 + 1) + (n2 / 2) * (Math.pow(upr, 2)) + n3 * upr) - 
+                                    ((n1 * Math.pow(lwr, a1 + 1)) / (a1 + 1) + (n2 / 2) * (Math.pow(lwr, 2)) + n3 * lwr), 2, -1), "\\ ") + "}}\\\\[5pt]";
                 }
             }
             suma += "\\end{aligned}$$";
