@@ -189,8 +189,8 @@ function stats(ctx) {
                     }
                     sumvar = dp(arr2.reduce((partialSum, a) => partialSum + a, 0), 8, -1);
                 } while (dp(mean, 2, -1) !== mean || dp(sumvar / arr.length, 4, -1) !== (sumvar / arr.length));
-                sumq += "$$\\text{Given that } Variance=\\frac{\\sum (x-\\bar x)^2}{n}$$";
-                sumq += "$$\\text{and } Standard\\ Deviation\\ (\\sigma)=\\sqrt{Variance}$$";
+                sumq += "$$\\text{Given that } variance=\\frac{\\sum (x-\\bar x)^2}{n}$$";
+                sumq += "$$\\text{and } standard\\ deviation\\ (\\sigma)=\\sqrt{variance}$$";
                 sumq += "$$\\text{find the variance and standard deviation (&sigma;) for the following data.}$$";
                 for (let i = 0; i < arr.length - 1; i++) {
                     sumq += arr[i] + ", ";
