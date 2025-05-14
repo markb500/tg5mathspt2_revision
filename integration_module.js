@@ -6,7 +6,7 @@ function integration() {
     suma = "";
     sumarrintegration = QLimitRepeats(sumarrintegration, 6);   //Ensures no repeat question until at least 50% of questions shown
     sum = sumarrintegration[sumarrintegration.length - 1];
-    // sum = 5;
+    // sum = 3;
     switch (sum) {
         case 1:         //Double case to weight sum selection over single case options
         case 2:
@@ -174,7 +174,7 @@ function integration() {
             if (arra.length > Math.ceil(5)) {
                 arra.shift();
             }
-            // n = -2;
+            // n = 2;
             // a = -2;
             var denom = gcd2(Math.abs(n), Math.abs(a));
             sumq += "$$\\text{Given that the integral of } ne^{ax} \\text{ is } \\frac{ne^{ax}}{a}+C$$";
@@ -254,7 +254,9 @@ function integration() {
                         } else if (ndenom > 1 && adenom === -1) {
                             suma += "&=\\frac{" + ndenom + "e^{" + a + "x}}{-1}\\\\[5pt]";
                             suma += "&=\\mathbf{" + (-1 * ndenom) + "e^{" + a + "x}+C}\\\\[5pt]";
-                        }
+                        } else if (ndenom === 1 && adenom === -1) {
+                            suma += "&=\\frac{" + ndenom + "e^{" + a + "x}}{-1}\\\\[5pt]";
+                            suma += "&=\\mathbf{-e^{" + a + "x}+C}\\\\[5pt]";}
                     }
                 }
             } else if (n < -1) {
