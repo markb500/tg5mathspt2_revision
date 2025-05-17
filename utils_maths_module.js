@@ -123,9 +123,9 @@ function gcd2(a, b) {
 
 function gcd(array) {
   // Greatest common divisor of a list (as array) of integers
-  var n = 0;
-  for(var i=0; i<array.length; ++i) {
-    n = gcd2(array[i], n);
+  let n = 0;
+  for(let i of array) {
+    n = gcd2(i, n);
 }
   return n;
 }
@@ -137,9 +137,9 @@ function lcm2(a, b) {
 
 function lcm(array) {
   // Least common multiple of a list (as array) of integers
-  var n = 1;
-  for(var i=0; i<array.length; ++i) {
-    n = lcm2(array[i], n);
+  let n = 1;
+  for(let i of array) {
+    n = lcm2(i, n);
   }
   return n;
 }
@@ -249,21 +249,21 @@ function primeFactors(n) {
 
 function primeExponents(arr) {
 //Counts duplicates in primeFactors() array for use as exponents in HCF/LCM
-  var count = {};
+  let count = {};
   arr.forEach(function(i) {count[i] = (count[i] || 0) + 1;});
   return count;
 }
 
 function primeTree(ctx2, term, primefacs, primesexp, x, y) {
 //Draws the primes tree for hcf/lcm solution and lists primes with exponents beneath
-  var num = term[0];
+  let num = term[0];
   ctx2.fillStyle = "red";
   ctx2.strokeStyle = "red";
   ctx2.textAlign = "left";
   ctx2.font = "bold 22px STIX Two Math";
   ctx2.fillText(term[0], x, y);
   ctx2.font = "20px STIX Two Math";
-  for (var i = 0; i < primefacs.length - 1; i++) {
+  for (let i = 0; i < primefacs.length - 1; i++) {
     y += 50;
     num /= primefacs[i];
     ctx2.fillText(primefacs[i], x - 50, y);
