@@ -41,7 +41,6 @@ const off = document.createElement('canvas');
             var a = rndgen(10, 150, 2, 0.01, -1);
             var b = dp((a * Math.sin(B * Math.PI / 180)) / Math.sin(A * Math.PI / 180), 2, -1);
             var c = dp((a * Math.sin(C * Math.PI / 180)) / Math.sin(A * Math.PI / 180), 2, -1);
-            sumq += "A = " + A + " B = " + B + " C = " + C + " a = " + a + " b = " + b + " c = " + c + "<br>";
             top = 50;
             left = 50;
             right = 275;
@@ -74,7 +73,7 @@ const off = document.createElement('canvas');
             ctx.fillText("b", left + (right - left) / 2, bottom + 25);
             ctx.fillText("c", left - 20 + (mid - left) / 2, top + (bottom - top) / 2);
             ctx.stroke();
-            switch(8) {
+            switch(rndgen(1, 8, 0, 1, -1)) {
                 case 1: //A, B & a
                     sumq += "Solve the triangle shown, given that A&nbsp;=&nbsp;" + A + "\xB0 B&nbsp;=&nbsp;" + B + "\xB0 and a&nbsp;=&nbsp;" + a + units + ". ";
                     sumq += "Give angles to the nearest whole number and round lengths to 2 decimal places.";
