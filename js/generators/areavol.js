@@ -319,6 +319,8 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: false,
+        
+        description: 'Diagram: solid or composite shape with dimensions marked for surface area or volume.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

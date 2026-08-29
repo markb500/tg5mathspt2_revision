@@ -510,6 +510,9 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
+        
+        description: 'Diagram (shown with the solution): straight-line or exponential graph with axes and scale.',
+        solutionDescription: 'Diagram (solution): graph for the given equation with axes, scale and plotted line or curve.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

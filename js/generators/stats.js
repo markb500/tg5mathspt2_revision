@@ -284,6 +284,8 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: false,
+        
+        description: 'Diagram: statistical figure (for example a pie chart) when this question includes one.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

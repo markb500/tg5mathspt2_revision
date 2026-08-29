@@ -224,6 +224,8 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: false,
+        
+        description: 'Diagram: right-angled triangle with the given sides and/or angles labelled.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

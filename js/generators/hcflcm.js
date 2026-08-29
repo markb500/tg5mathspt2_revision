@@ -27,8 +27,8 @@ function primeExponents(arr) {
 function primeTree(ctx2, term, primefacs, primesexp, x, y) {
 //Draws the primes tree for hcf/lcm solution and lists primes with exponents beneath
   var num = term[0];
-  ctx2.fillStyle = "red";
-  ctx2.strokeStyle = "red";
+  ctx2.fillStyle = '#9b0000';
+  ctx2.strokeStyle = '#9b0000';
   ctx2.textAlign = "left";
   ctx2.font = "bold 22px STIX Two Math";
   ctx2.fillText(term[0], x, y);
@@ -261,6 +261,9 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
+        
+        description: 'Diagram (shown with the solution): prime-factor trees for the terms, used to find HCF and LCM.',
+        solutionDescription: 'Diagram (solution): prime-factor trees for each term with factors listed for HCF/LCM.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

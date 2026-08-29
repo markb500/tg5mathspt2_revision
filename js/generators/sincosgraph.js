@@ -196,6 +196,9 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
+        
+        description: 'Diagram (shown with the solution): sine or cosine graph, or CAST diagram, for this question.',
+        solutionDescription: 'Diagram (solution): completed sine/cosine graph or CAST diagram for the solution.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

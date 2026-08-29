@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>TG5 Maths Part II Revision Aid</title>
   <meta charset="utf-8">
@@ -26,9 +26,11 @@
   <script type="module" src="js/app.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Skip to question content</a>
+
 <div class="py-3 jumbotron bg-transparent text-center" style="margin-bottom:0; background-image:url(images/typhoon_line.png); 
                 background-size:50%; background-repeat:no-repeat; background-position:right center">
-  <img id="cosbadge" width="98" height="135" class="float-left" src="images/Cosbadge.png" alt="cosbadge">
+  <img id="cosbadge" width="98" height="135" class="float-left" src="images/Cosbadge.png" alt="RAF Cosford unit badge">
   <h1><br>TG5 Maths Part II Revision Questions<br><br></h1>
 </div>
 <script type="text/x-mathjax-config">
@@ -43,29 +45,32 @@
     <div class="col-md-3">
       <p id="topicInstruction">Select a question topic. Each click generates a new question.</p>
 
-            <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="indices">Indices</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="hcflcm">HCF/LCM</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="transposeI">Transposition I</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="transposeII">Transposition II</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="solve1">Algebra: Solve Equation</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="quadratics">Quadratics</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="simultaneous">Simultaneous Equations</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="logs">Logarithms</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="graph">Straight and Exponential Graphs</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="trig">RA Triangle Trigonometry</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="nonratrig">Non-RA Triangle Trigonometry</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="conv">Conversions</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="sincosgraph">Sin/Cos Graphs</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="areavol">Surface Area & Volume</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="differentiation">Differentiation</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="integration">Integration</button>
-      <button class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="stats">Statistics</button>
-      <button id="testdesign" class="btn btn-outline-primary btn-sm btn-block mt-2"onclick="window.open('testCreate.html','testCreate');">Test Designer</button>
-      <a href="MathsHelp/userhelp.html" target="_blank">
-        <button id="userhelp" class="btn btn-outline-primary btn-sm mt-2">User Help</button>
-      </a>
+            <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="indices">Indices</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="hcflcm">HCF/LCM</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="transposeI">Transposition I</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="transposeII">Transposition II</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="solve1">Algebra: Solve Equation</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="quadratics">Quadratics</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="simultaneous">Simultaneous Equations</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="logs">Logarithms</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="graph">Straight and Exponential Graphs</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="trig">RA Triangle Trigonometry</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="nonratrig">Non-RA Triangle Trigonometry</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="conv">Conversions</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="sincosgraph">Sin/Cos Graphs</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="areavol">Surface Area & Volume</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="differentiation">Differentiation</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="integration">Integration</button>
+      <button type="button" class="btn btn-outline-primary btn-sm btn-block topic-btn" data-topic="stats">Statistics</button>
+      <button type="button" id="testdesign" class="btn btn-outline-primary btn-sm btn-block mt-2"
+        onclick="window.open('testCreate.html','testCreate');">Test Designer</button>
+      <button type="button" id="btnStaffSoln" class="btn btn-outline-primary btn-sm btn-block">
+        Separate solution window
+      </button>
+      <a id="userhelp" class="btn btn-outline-primary btn-sm mt-2 d-inline-block"
+         href="MathsHelp/userhelp.html" target="_blank" rel="noopener noreferrer">User Help</a>
       <div>
-      <p><br>Select background colour.</p>
+      <p><br><label for="colourSelect">Select background colour</label></p>
       <select id="colourSelect">
         <option value="#ffffff">White</option>
         <option value="hsla(220,60%,70%,0.3)">Blue</option>
@@ -74,29 +79,35 @@
       </select>
       </div>
     </div>
-    <div class="col-md-9">
-      <h3 id="q"></h3>
+    <div class="col-md-9" id="mainContent">
+      <h2 class="h3" id="q" aria-live="polite" aria-atomic="true" tabindex="-1"></h2>
+      <p id="diagramDesc" class="diagram-desc" hidden></p>
       <div id="diagram-area" style="clear: both; margin-top: 10px;">
-        <canvas id="myCanvas" width="0.5" height="0.5" style="border:none; display:block; margin: 0 auto;"></canvas>
-        <canvas id="myCanvas2" width="0.5" height="0.5" style="border:none;"></canvas>
+        <canvas id="myCanvas" width="0.5" height="0.5" style="border:none; display:block; margin: 0 auto;"
+                aria-hidden="true"></canvas>
+        <canvas id="myCanvas2" width="0.5" height="0.5" style="border:none;" aria-hidden="true"></canvas>
       </div>
       <p>
-        <a id="noteslink" style="visibility:hidden" href="#">Link to Training Notes</a>
+        <a id="noteslink" style="visibility:hidden" href="#" target="_blank">Link to training notes for this question</a>
       </p>
-      <button id="btnSoln" class="btn btn-outline-primary btn-sm m-3" style="visibility:hidden">
-      <span class="font-weight-bold">Show/Hide Solution</span><br>Views: <span id="viewCount">0</span>
+      <button type="button" id="btnSoln" class="btn btn-outline-primary btn-sm m-3"
+              style="visibility:hidden" aria-expanded="false"
+              aria-controls="a diagramDesc myCanvas">
+        <span class="font-weight-bold">Show/Hide Solution</span><br>Views: <span id="viewCount">0</span>
       </button>
-      <h4 id="a" style="color:red; clear: both; margin-top: 10px;"></h4>
+      <div id="a" class="h4" style="color:#9b0000; clear: both; margin-top: 10px;"
+           aria-live="polite" aria-atomic="false"></div>
     </div>
   </div>
   <footer class="container-fluid text-center">
   
     <a href="https://librecounter.org/referer/show" target="_blank">
-    <img src="https://librecounter.org/counter.svg" referrerPolicy="unsafe-url" />
+    <img src="https://librecounter.org/counter.svg" referrerPolicy="unsafe-url" alt="" />
     </a>
   
     <p>Designed to aid revision for the maths element of the RAF Aerospace Eng Tech Course.</p>
     <p>Designed by Mark Butler, APO, RAF Cosford</p>
+    <p class="small"><a href="accessibility.html">Accessibility statement</a></p>
   </footer>
 </div>
 </body>

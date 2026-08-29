@@ -830,6 +830,9 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
+        
+        description: 'Diagram (shown with the solution): graph of the two linear equations with axes and scale.',
+        solutionDescription: 'Diagram (solution): graph of both lines; coordinate tables appear in the solution text.',
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

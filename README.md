@@ -16,3 +16,13 @@ npx serve .
 ## Structure
 
 Same pattern as Part I: `js/registry.js`, `js/generators/*.js`, Test Designer, SolnWin (`chpz`), notes PDFs under `images/`.
+
+
+## Usability notes (aligned with Maths Revision)
+
+- **Separate solution window** button (legacy key sequence `chpz` still works)
+- SolnWin shows diagrams only when `withSolution` is true; overlays when both question and solution figures exist
+- Background colour applies to an open SolnWin
+- Test Designer supports keyboard reorder (Up/Down, Alt+arrows)
+- Accessibility statement: `accessibility.html` (complete placeholders before publishing)
+- Canvas topics include text diagram descriptions
