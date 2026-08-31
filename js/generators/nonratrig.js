@@ -206,6 +206,12 @@ const off = document.createElement('canvas');
                     break;
             }
     notesLink = "images/20200504-MathsBook7Pythagv1_3-APO.pdf#page=5";
+
+    const diagramDescription =
+      'Non-right-angled triangle ABC. Vertex A is at the lower left, B at the top, and C at the lower right. ' +
+      'Side a is opposite A (between B and C), side b opposite B (between A and C), and side c opposite C (between A and B). ' +
+      'Angle arcs are marked at each vertex; vertices and sides are labelled A, B, C and a, b, c.';
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -216,8 +222,7 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: false,
-        
-        description: 'Diagram: non-right-angled triangle with the given sides and/or angles labelled.',
+        description: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

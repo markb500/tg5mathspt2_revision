@@ -271,6 +271,7 @@ const off = document.createElement('canvas');
     suma = "";  // canvas provides spacing
     sumarrgraph = QLimitRepeats(sumarrgraph, 2);   //Ensures no repeat question until at least 50% of questions shown
     sum = sumarrgraph[sumarrgraph.length - 1];
+    let graphMeta = null;
     switch (sum) {
         case 1:
             switch(rndgen(1, 4, 0, 1, -1)) {
@@ -304,6 +305,17 @@ const off = document.createElement('canvas');
             sumq += "b. prove that the graph is correct for this equation using the general equation form, y = mx + c";
             scale = scaleSet(3, Math.max(xcf1*4+c1, c1));
             scaleDraw(ctx2, scale.xptve, scale.yptve, scale.x, scale.y);
+            graphMeta = {
+              type: 'linear',
+              ltr1: ltr1txt,
+              ltr2: ltr2txt,
+              m: xcf1,
+              c: c1,
+              scaleX: scale.x,
+              scaleY: scale.y,
+              xMin: 1,
+              xMax: 4
+            };
 
             //Used to get coords at either end of line for drawing graph
             xcross1 = -c1 / xcf1;   //x when y = 0
@@ -439,6 +451,15 @@ const off = document.createElement('canvas');
             ymin = dp((a * Math.exp(b * 0)), 2, -1);
             ymax = dp((a * Math.exp(b * 5)), 2, -1);
             scale = 300 / ymax + 50;
+            graphMeta = {
+              type: 'exponential',
+              a: a,
+              b: b,
+              ymin: ymin,
+              ymax: ymax,
+              xMin: 0,
+              xMax: 5
+            };
             sumq += "Using x axis range limits of 0 to 5, complete a table of coordinates and sketch the graph of the following equation";
             if (a === 1) {
                 sumq += "$$y=e^{" + b + "x}$$";
@@ -500,6 +521,47 @@ const off = document.createElement('canvas');
     }        
 
     notesLink = "images/20240924-TG5MathsBook3-GraphsStatsV1_0-APO.pdf#page=4";
+
+    let diagramDescription;
+    if (graphMeta && graphMeta.type === 'linear') {
+      const m = graphMeta.m;
+      const c = graphMeta.c;
+      const h = graphMeta.ltr1;
+      const v = graphMeta.ltr2;
+      let eqn;
+      if (m === 1) eqn = v + ' = ' + h;
+      else if (m === -1) eqn = v + ' = −' + h;
+      else eqn = v + ' = ' + m + h;
+      if (c > 0) eqn += ' + ' + c;
+      else if (c < 0) eqn += ' − ' + Math.abs(c);
+      const slopeWord = m > 0 ? 'positive gradient' : (m < 0 ? 'negative gradient' : 'zero gradient');
+      const interceptNote = (c === 0)
+        ? 'passes through the origin'
+        : ('crosses the ' + v + '-axis at ' + c);
+      diagramDescription =
+        'Straight-line graph of ' + eqn +
+        ' for ' + h + ' from ' + graphMeta.xMin + ' to ' + graphMeta.xMax + '. ' +
+        'Axes show the positive quadrant with scale divisions of ' + graphMeta.scaleX +
+        ' on ' + h + ' and ' + graphMeta.scaleY + ' on ' + v + '. ' +
+        'A straight line with ' + slopeWord + ' is drawn; it ' + interceptNote +
+        '. Four plotted points match the coordinate table (' + h + ' = 1, 2, 3, 4).';
+    } else if (graphMeta && graphMeta.type === 'exponential') {
+      const a = graphMeta.a;
+      const b = graphMeta.b;
+      const eqn = (a === 1) ? ('y = e^(' + b + 'x)') : ('y = ' + a + 'e^(' + b + 'x)');
+      diagramDescription =
+        'Exponential graph of ' + eqn + ' for x from ' + graphMeta.xMin +
+        ' to ' + graphMeta.xMax + '. ' +
+        'The horizontal axis is x; the vertical axis is y, scaled so the curve fits ' +
+        '(y rises from about ' + graphMeta.ymin + ' at x = 0 to about ' + graphMeta.ymax +
+        ' at x = 5). ' +
+        'A smooth increasing curve is drawn, concave up, consistent with a positive growth rate b = ' +
+        b + '. Coordinates at integer x values match the table in the solution.';
+    } else {
+      diagramDescription =
+        'Diagram (shown with the solution): graph of the given equation with axes and scale.';
+    }
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -510,9 +572,8 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
-        
-        description: 'Diagram (shown with the solution): straight-line or exponential graph with axes and scale.',
-        solutionDescription: 'Diagram (solution): graph for the given equation with axes, scale and plotted line or curve.',
+        description: diagramDescription,
+        solutionDescription: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

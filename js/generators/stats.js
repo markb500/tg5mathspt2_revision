@@ -274,6 +274,19 @@ const off = document.createElement('canvas');
                 break;
     }
     notesLink = "images/20230706-MathsBook08Proportionv1_6-APO.pdf#page=4";
+
+    let diagramDescription = '';
+    if ((sum === 1 || sum === 2) && typeof angles !== 'undefined' && angles.length) {
+      // Labels match the diagram: Choc bar name only; others "Name = angle°"
+      const sectorBits = angles.map(function (row, i) {
+        if (i === 2) return row[0] + ' (no angle given)';
+        return row[0] + ' = ' + row[1] + '°';
+      });
+      diagramDescription =
+        'Pie chart of favourite snacks, divided into five sectors with radii from the centre. ' +
+        'Sector labels (as shown): ' + sectorBits.join('; ') + '.';
+    }
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -284,8 +297,7 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: false,
-        
-        description: 'Diagram: statistical figure (for example a pie chart) when this question includes one.',
+        description: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

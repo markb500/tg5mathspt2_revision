@@ -188,9 +188,15 @@ const off = document.createElement('canvas');
   notesLink = "images/20200505-MathsBook9SinCosGraphsv1_3-APO.pdf#page=3";
 
   let diagramDescription;
-  if (sum === 29) {
+  if (sum > 17 && sum < 30) {
+    // CAST diagram — layout only; question states the ratio and angle range
     diagramDescription =
-      'Diagram (shown with the solution): CAST diagram for finding angles between 0° and 360°.';
+      'CAST diagram: four quadrants with angles measured anticlockwise from the positive horizontal axis (0° to 360°). ' +
+      'Quadrant 1 (0°–90°) is labelled A (all of sin, cos and tan positive); ' +
+      'quadrant 2 (90°–180°) S (sin positive only); ' +
+      'quadrant 3 (180°–270°) T (tan positive only); ' +
+      'quadrant 4 (270°–360°) C (cos positive only). ' +
+      'Used to find all solutions in 0° to 360° from a reference angle.';
   } else {
     // Equation only — not "from 0° to 360°"
     let title = sumq
