@@ -215,6 +215,7 @@ function generateQuestion(topic) {
   document.getElementById('q').innerHTML = currentSumData.question;
   document.getElementById('a').innerHTML = '';
   document.getElementById('a').dataset.showing = '0';
+  solutionShowing = false;
   document.getElementById('noteslink').href = currentSumData.notesLink;
   document.getElementById('noteslink').style.visibility = 'visible';
 
@@ -223,6 +224,8 @@ function generateQuestion(topic) {
 
   clearCanvasEl(canvas);
   clearCanvasEl(canvas2);
+  if (canvas2) canvas2.style.visibility = 'hidden';
+  solutionShowing = false;
 
   updateDiagramDescription(false, false);
 
