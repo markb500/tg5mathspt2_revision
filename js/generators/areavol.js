@@ -309,6 +309,61 @@ const off = document.createElement('canvas');
             break;
     }
     notesLink = "images/20200505-MathsBook12AreaVolv1_3-APO.pdf#page=3";
+
+  const shapeInfo = {
+    1: {
+      text: () =>
+        'A composite solid consists of a cuboid with length ' + a + units +
+        ', depth ' + b + units + ', and height ' + c + units +
+        ', with a right-angled triangular prism, with the right angle at the bottom left of the prism, ' +
+        'mounted on its upper face at the left end and extending across the full width of the cuboid. ' +
+        'The sloping face of the prism is ' + f + units + ' long, the cuboid\'s remaining exposed upper face ' +
+        'extends ' + e + units + ' from the triangular prism, and the overall height is ' + d + units + '.'
+    },
+    2: {
+      text: () =>
+        'A composite solid consists of a cuboid with length ' + a + units +
+        ', depth ' + b + units + ', and height ' + c + units +
+        ', with a right-angled triangular prism, with the right angle at the bottom left of the prism, ' +
+        'mounted on its upper face at the left end and extending across the full width of the cuboid. ' +
+        'The sloping face of the prism is ' + f + units + ' long, the cuboid\'s remaining exposed upper face ' +
+        'extends ' + e + units + ' from the triangular prism, and the overall height is ' + d + units + '. ' +
+        'A cylindrical hole drilled longitudinally through the centre of the cuboid has a diameter of ' +
+        g + units + '.'
+    },
+    3: {
+      text: () =>
+        'A composite solid consists of 2 cylinders joined concentrically at their circular faces. ' +
+        'The larger cylinder is on the left and has diameter ' + d + units + ' and length ' + a + units + '. ' +
+        'The smaller cylinder has diameter ' + c + units + ' and length ' + b + units + '.'
+    },
+    4: {
+      text: () =>
+        'An equilateral triangular prism is ' + a + String(units).trim() + ' long, with a ' + b +
+        String(units).trim() + ' base, vertical height of ' + c + String(units).trim() +
+        ' and sloping side length of ' + e + String(units).trim() +
+        '. A cylindrical hole drilled longitudinally through the length of the prism has diameter ' +
+        d + String(units).trim() + '.'
+    },
+    5: {
+      text: () =>
+        'A composite solid consists of a hemisphere joined concentrically to the top of a cylinder ' +
+        'at the cylinder\'s circular base. The hemisphere has a diameter of ' + a + String(units).trim() +
+        ', the cylinder has a diameter of ' + b + String(units).trim() +
+        ', and the total height of the combined solid is ' + (Number(c) + Number(a) / 2) + String(units).trim() + '.'
+    },
+    6: {
+      text: () =>
+        'A composite solid consists of a hemisphere joined to a cone along their common circular base. ' +
+        'The base diameter is ' + a + String(units).trim() + ', the cone\'s sloping length is ' + c + String(units).trim() +
+        ', and the total height of the combined solid is ' + (Number(b) + Number(a) / 2) + String(units).trim() + '.'
+    }
+  };
+  const info = shapeInfo[sum];
+  const diagramDescription = info
+    ? info.text()
+    : ('Diagram: composite solid with linear dimensions marked in' + units + '.');
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -320,7 +375,7 @@ const off = document.createElement('canvas');
         height: off.height,
         withSolution: false,
         
-        description: 'Diagram: solid or composite shape with dimensions marked for surface area or volume.',
+        description: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

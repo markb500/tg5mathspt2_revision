@@ -65,7 +65,8 @@ const off = document.createElement('canvas');
     ctx.arc(left, bottom, 40, 0, -(Math.PI/180) * ang, true);
                                     //arc(x, y, radius, startAngle, endAngle, counterclockwise)
     ctx.stroke();
-    switch(rndgen(1, 6, 0, 1, -1)) {      //Select which 2 params to show on tri
+    const showType = rndgen(1, 6, 0, 1, -1);
+    switch(showType) {      //Select which 2 params to show on tri
         case 1:     //1-adj opp
             ctx.font = "20px Comic Sans MS";
             ctx.textAlign = "left";
@@ -214,6 +215,36 @@ const off = document.createElement('canvas');
             break;
     }
     notesLink = "images/20200504-MathsBook7Pythagv1_3-APO.pdf#page=5";
+
+  // Description matches drawn figure: right angle at lower right; angle at lower left.
+  let diagramDescription =
+    'A right-angled triangle is shown with the right angle at the lower right. ' +
+    'The angle at the lower left is marked';
+  if (showType >= 4) {
+    diagramDescription += ' as ' + ang + '°';
+  } else {
+    diagramDescription += ' as θ';
+  }
+  diagramDescription += '. ';
+  const sideBits = [];
+  // Cases: 1 adj+opp, 2 adj+hyp, 3 opp+hyp, 4 ang+adj, 5 ang+opp, 6 ang+hyp
+  if (showType === 1 || showType === 2 || showType === 4) {
+    sideBits.push('the adjacent side (bottom) is given as ' + adj + units);
+  } else {
+    sideBits.push('the adjacent side (bottom) is labelled Adj');
+  }
+  if (showType === 1 || showType === 3 || showType === 5) {
+    sideBits.push('the opposite side (vertical) is given as ' + opp + units);
+  } else {
+    sideBits.push('the opposite side (vertical) is labelled Opp');
+  }
+  if (showType === 2 || showType === 3 || showType === 6) {
+    sideBits.push('the hypotenuse is given as ' + hyp + units);
+  } else {
+    sideBits.push('the hypotenuse is labelled Hyp');
+  }
+  diagramDescription += sideBits.join('; ') + '.';
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -225,7 +256,7 @@ const off = document.createElement('canvas');
         height: off.height,
         withSolution: false,
         
-        description: 'Diagram: right-angled triangle with the given sides and/or angles labelled.',
+        description: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };

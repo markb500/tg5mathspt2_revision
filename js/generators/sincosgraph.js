@@ -185,7 +185,71 @@ const off = document.createElement('canvas');
       suma += "\\end{aligned}$$";
       break;
   }
-  notesLink = "images/"
+  notesLink = "images/20200505-MathsBook9SinCosGraphsv1_3-APO.pdf#page=3";
+
+  let diagramDescription;
+  if (sum === 29) {
+    diagramDescription =
+      'Diagram (shown with the solution): CAST diagram for finding angles between 0° and 360°.';
+  } else {
+    // Equation only — not "from 0° to 360°"
+    let title = sumq
+      .replace(/<[^>]+>/g, '')
+      .replace(/&theta;/gi, 'θ')
+      .replace(/&Theta;/gi, 'θ');
+    const titleMatch = title.match(/y\s*=\s*.+?(?=\s+from\s+|$)/i);
+    title = titleMatch ? titleMatch[0].trim() : 'y = Sin(θ)';
+
+    const isTan = /Tan/i.test(title);
+    const isCos = /Cos/i.test(title);
+    const isNeg = /=\s*-/.test(title);
+    const ampMatch = title.match(/=\s*-?\s*([\d.]+)\s*(Sin|Cos|Tan)/i);
+    const amp = ampMatch ? Number(ampMatch[1]) : 1;
+    const periodMatch = title.match(/(Sin|Cos|Tan)\s*\(\s*([\d.]+)\s*θ\s*\)/i);
+    const periodFactor = periodMatch ? Number(periodMatch[2]) : 1;
+    const signWord = isNeg ? 'negative' : 'positive';
+
+    function cyclePhrase(n) {
+      const rounded = Math.round(n * 100) / 100;
+      if (rounded === 1) return 'One cycle';
+      if (rounded === 1.5) return 'One and a half cycles';
+      if (rounded === 2) return 'Two cycles';
+      if (rounded === 2.5) return 'Two and a half cycles';
+      if (rounded === 3) return 'Three cycles';
+      if (Number.isInteger(rounded)) {
+        const words = { 4: 'Four', 5: 'Five', 6: 'Six' };
+        return (words[rounded] || String(rounded)) + ' cycles';
+      }
+      return rounded + ' cycles';
+    }
+
+    if (isTan) {
+      // Tan has vertical asymptotes; y is unbounded (sketch typically shows about −5 to 5)
+      let cycleNote = cyclePhrase(periodFactor) + ' of a ' + signWord + ' Tangent curve is shown';
+      if (periodFactor !== 1) {
+        cycleNote += ' (argument ' + periodFactor + 'θ)';
+      }
+      cycleNote += ', with vertical asymptotes where cos(θ) = 0 (for example at 90° and 270° for y = Tan(θ)).';
+      diagramDescription =
+        'Diagram showing the graph of ' + title + '. ' +
+        'The horizontal axis shows angle in degrees from 0° to 360°. ' +
+        'The vertical axis is the function value (unbounded; the sketch shows a typical range around the origin). ' +
+        cycleNote;
+    } else {
+      const waveName = isCos ? 'Cosine' : 'Sine';
+      const yMax = amp;
+      const yMin = -amp;
+      let cycleNote = cyclePhrase(periodFactor) + ' of a ' + signWord + ' ' + waveName + ' curve is shown';
+      if (amp !== 1) cycleNote += ' (amplitude ' + amp + ')';
+      cycleNote += '.';
+      diagramDescription =
+        'Diagram showing the graph of ' + title + '. ' +
+        'The horizontal axis shows angle in degrees from 0° to 360°. ' +
+        'The vertical axis is the function value between ' + yMax + ' and ' + yMin + '. ' +
+        cycleNote;
+    }
+  }
+
   const _result = {
       question: sumq,
       solution: suma,
@@ -196,9 +260,8 @@ const off = document.createElement('canvas');
         width: off.width,
         height: off.height,
         withSolution: true,
-        
-        description: 'Diagram (shown with the solution): sine or cosine graph, or CAST diagram, for this question.',
-        solutionDescription: 'Diagram (solution): completed sine/cosine graph or CAST diagram for the solution.',
+        description: diagramDescription,
+        solutionDescription: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };
