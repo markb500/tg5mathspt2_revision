@@ -42,6 +42,7 @@ function clearCanvasEl(c) {
   c.style.visibility = 'hidden';
 }
 
+let solutionShowing = false;
 let views = 0;
 let SolnWin = null;
 
@@ -210,6 +211,7 @@ function updateSolnWin() {
 
 function generateQuestion(topic) {
   currentSumData = registry.get(topic).generate();
+  solutionShowing = false;
 
   document.getElementById('q').innerHTML = currentSumData.question;
   document.getElementById('a').innerHTML = '';
@@ -257,71 +259,51 @@ function generateQuestion(topic) {
 function toggleSolution() {
   const aDiv = document.getElementById('a');
   const canvas = document.getElementById('myCanvas');
+  const canvas2 = document.getElementById('myCanvas2');
 
-  const showing = aDiv.dataset.showing === '1';
-
-  if (!showing) {
-    // ----- Show solution -----
+  if (!solutionShowing) {
+    aDiv.innerHTML = currentSumData.solution || '';
+    aDiv.style.visibility = 'visible';
+    if (currentSumData.solution) {
+      utils.eqnformat('a');
+    }
     views++;
     updateViewCount();
-    aDiv.dataset.showing = '1';
-    aDiv.innerHTML = '';
+    solutionShowing = true;
+    if (typeof setSolutionExpanded === 'function') setSolutionExpanded(true);
 
-    const isSolCanvas = currentSumData.canvas && currentSumData.canvas.withSolution === true;
-
-    // Solution-only diagram (sincos / simultaneous / graph): draw inside #a
-    if (isSolCanvas) {
-      // Keep the page question canvas clear
-      if (canvas) {
-        canvas.height = 0.5;
-        canvas.width = 0.5;
-        canvas.style.visibility = 'hidden';
+    if (currentSumData.canvas && currentSumData.canvas.withSolution) {
+      const w = currentSumData.canvas.width;
+      const h = currentSumData.canvas.height;
+      const stack = document.getElementById('canvasStack');
+      if (stack) {
+        stack.style.width = w + 'px';
+        stack.style.height = h + 'px';
       }
-      const solCanvas = document.createElement('canvas');
-      solCanvas.width = currentSumData.canvas.width || 400;
-      solCanvas.height = currentSumData.canvas.height || 400;
-      solCanvas.className = 'solution-canvas';
-      solCanvas.style.display = 'block';
-      solCanvas.style.margin = '0 auto 0.25rem auto';
-      solCanvas.style.maxWidth = '100%';
-      aDiv.appendChild(solCanvas);
-      try {
-        currentSumData.canvas.draw(solCanvas.getContext('2d'));
-      } catch (err) {
-        console.error('Solution canvas draw failed:', err);
+      if (canvas2) {
+        canvas2.height = h;
+        canvas2.width = w;
+        canvas2.style.visibility = 'visible';
+        currentSumData.canvas.draw(canvas2.getContext('2d'));
+      } else {
+        canvas.height = h;
+        canvas.width = w;
+        currentSumData.canvas.draw(canvas.getContext('2d'));
       }
-      updateDiagramDescription(true, true);
+      if (typeof updateDiagramDescription === 'function') updateDiagramDescription(true, true);
     }
-
-    setSolutionExpanded(true);
-    const textWrap = document.createElement('div');
-    textWrap.id = 'solution-text';
-    textWrap.style.marginTop = '0.25rem';
-    textWrap.innerHTML = currentSumData.solution || '';
-    aDiv.appendChild(textWrap);
-    window.eqnformat('a');
   } else {
-    // ----- Hide solution -----
-    aDiv.dataset.showing = '0';
     aDiv.innerHTML = '';
-    setSolutionExpanded(false);
-
-    // Re-show question diagram if this topic uses one
-    if (currentSumData.canvas && currentSumData.canvas.withSolution !== true
-        && !currentSumData.canvas._blank && canvas) {
-      canvas.height = currentSumData.canvas.height;
-      canvas.width = currentSumData.canvas.width;
-      canvas.style.visibility = 'visible';
-      try {
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        currentSumData.canvas.draw(ctx);
-      } catch (err) {
-        console.error('Question canvas redraw failed:', err);
-      }
-      updateDiagramDescription(true, false);
-    } else if (currentSumData.canvas && currentSumData.canvas.withSolution === true) {
-      updateDiagramDescription(false, false);
+    aDiv.style.visibility = 'hidden';
+    solutionShowing = false;
+    if (typeof setSolutionExpanded === 'function') setSolutionExpanded(false);
+    if (canvas2) {
+      canvas2.height = 0.5;
+      canvas2.width = 0.5;
+      canvas2.style.visibility = 'hidden';
+    }
+    if (currentSumData.canvas && currentSumData.canvas.withSolution) {
+      if (typeof updateDiagramDescription === 'function') updateDiagramDescription(true, false);
     }
   }
 }
