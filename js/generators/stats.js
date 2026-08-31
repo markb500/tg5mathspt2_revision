@@ -284,7 +284,7 @@ const off = document.createElement('canvas');
       });
       diagramDescription =
         'Pie chart of favourite snacks, divided into five sectors with radii from the centre. ' +
-        'Sector labels (as shown): ' + sectorBits.join('; ') + '.';
+        'Sector labels show: ' + sectorBits.join('; ') + '.';
     }
 
     const _result = {
