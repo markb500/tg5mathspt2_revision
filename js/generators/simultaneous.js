@@ -233,6 +233,26 @@ function scaleSet(x, y) {
   return {xptve: xpositive, yptve: ypositive, x: xscale, y: yscale};
 }
 
+/** True if any of the three table points on either line falls outside the 6×scale graph area or wrong quadrant. */
+function tablePointsOutside(tab, scale) {
+  const limitX = 6 * scale.x;
+  const limitY = 6 * scale.y;
+  const pts = [
+    [tab.x11, tab.y11], [tab.x12, tab.y12], [tab.x13, tab.y13],
+    [tab.x21, tab.y21], [tab.x22, tab.y22], [tab.x23, tab.y23]
+  ];
+  for (let i = 0; i < pts.length; i++) {
+    const xx = pts[i][0];
+    const yy = pts[i][1];
+    if (Math.abs(xx) > limitX + 0.001 || Math.abs(yy) > limitY + 0.001) return true;
+    if (scale.xptve && xx < -0.001) return true;
+    if (!scale.xptve && xx > 0.001) return true;
+    if (scale.yptve && yy < -0.001) return true;
+    if (!scale.yptve && yy > 0.001) return true;
+  }
+  return false;
+}
+
 function coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, xscale, xpositive, sum) {
   //Used in Simultaneous Module. Creates the coordinates for the coord tables
   let xtab11, xtab12, xtab13, xtab21, xtab22, xtab23;
@@ -364,9 +384,14 @@ const off = document.createElement('canvas');
                         Math.abs(x) === 1 || Math.abs((xcf1 / ycf1) - (xcf2 / ycf2)) < 3)
                 c2 = (xcf2 * x) + (ycf2 * y);
 
-                scale = scaleSet(x, y)  //Determines sign of x & y and sets scale multipliers
-            } while (Math.abs((scale.x * (xcf1 / ycf1)) / scale.y) >= 2 || Math.abs((scale.x * (xcf2 / ycf2)) / scale.y) >= 2)
-                                                                    //Ensures gradient allows 3 coords in same quadrant of graph
+                scale = scaleSet(x, y);  //Determines sign of x & y and sets scale multipliers
+                tab = coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, scale.x, scale.xptve, 1);
+            } while (
+                Math.abs((scale.x * (xcf1 / ycf1)) / scale.y) >= 2 ||
+                Math.abs((scale.x * (xcf2 / ycf2)) / scale.y) >= 2 ||
+                tablePointsOutside(tab, scale)
+            )
+                // Gradient allows 3 coords in same quadrant; table points must fit on the 6×scale grid
 
             //Used to get coords at either end of line for drawing graph
             xcross1 = c1 / xcf1;   //x when y = 0
@@ -388,7 +413,6 @@ const off = document.createElement('canvas');
                 youter2 = (c2 - xcf2 * -6 * scale.x) / ycf2;
             }
             
-            tab = coordTabSimEqn(x, y, xcf1, ycf1, c1, xcf2, ycf2, c2, scale.x, scale.xptve, 1);  //Sets x & y coords for coord table
         
             sumq += "Solve the simultaneous equations, using graphical and algebraic methods.";
             sumq += "$$\\begin{alignat}{2}" + 
@@ -569,8 +593,13 @@ const off = document.createElement('canvas');
                                                 //Checks c2 is int, between -5 & 25 not 0, y between -50 & 50 (not 0 or 1) and graph lines gradient difference > 3
 
                 scale = scaleSet(x, y);  //Determines sign of x & y and sets scale multipliers
-            } while (Math.abs((scale.x * xcf1) / scale.y) >= 2 || Math.abs((scale.x * xcf2) / scale.y) >= 2)
-                                            //Ensures gradient allows 3 coords in same quadrant of graph
+                tab = coordTabSimEqn(x, y, xcf1, -1, c1, xcf2, -1, c2, scale.x, scale.xptve, 2);
+            } while (
+                Math.abs((scale.x * xcf1) / scale.y) >= 2 ||
+                Math.abs((scale.x * xcf2) / scale.y) >= 2 ||
+                tablePointsOutside(tab, scale)
+            )
+                // Gradient allows 3 coords in same quadrant; table points must fit on the 6×scale grid
             
             //Used to get coords at either end of line for drawing graph
             xcross1 = -c1 / xcf1;  //x when y = 0
@@ -592,7 +621,6 @@ const off = document.createElement('canvas');
                 youter2 = xcf2 * -6 * scale.x + c2;
             }
             
-            tab = coordTabSimEqn(x, y, xcf1, -1, c1, xcf2, -1, c2, scale.x, scale.xptve, 2);  //Sets x & y coords for coord table
 
             sumq += "Solve the simultaneous equations, using graphical and algebraic methods.";
             sumq += "$$\\begin{aligned}" + ltr2 + "&=" + cfchk(xcf1, ltr1, 1, 1) + cfchk(c1, "", 0, 0) + "\\\\" + 
@@ -820,6 +848,36 @@ const off = document.createElement('canvas');
     ctx2.fillText('x', coordxtab21.x, coordxtab21.y);
     ctx2.fillText('x', coordxtab13.x, coordxtab13.y);
     ctx2.fillText('x', coordxtab23.x, coordxtab23.y);
+
+  function simGraphDescription() {
+    let sx, sy, xptve = true, yptve = true;
+    if (typeof scale === 'object' && scale !== null && 'x' in scale) {
+      sx = scale.x; sy = scale.y;
+      xptve = scale.xptve; yptve = scale.yptve;
+    } else if (typeof xscale !== 'undefined') {
+      sx = xscale; sy = yscale;
+      if (typeof xpositive !== 'undefined') { xptve = xpositive; yptve = ypositive; }
+    } else {
+      sx = 1; sy = 1;
+    }
+    const qx = xptve ? 'positive' : 'negative';
+    const qy = yptve ? 'positive' : 'negative';
+    const ax = (typeof ltr1txt !== 'undefined' && ltr1txt) ? ltr1txt : 'x';
+    const ay = (typeof ltr2txt !== 'undefined' && ltr2txt) ? ltr2txt : 'y';
+    const solX = (typeof x !== 'undefined') ? x : '?';
+    const solY = (typeof y !== 'undefined') ? y : '?';
+    return (
+      'Diagram: simultaneous equations graph. ' +
+      'Shows the ' + qx + '–' + qy + ' quadrant only. ' +
+      'Horizontal axis ' + ax + ' with scale divisions of ' + sx + '; ' +
+      'vertical axis ' + ay + ' with scale divisions of ' + sy + '. ' +
+      'Two straight lines are drawn from edge to edge of the grid; ' +
+      'their intersection (the solution) is at (' + solX + ', ' + solY + '). ' +
+      'Each line is marked with three plotted points matching the coordinate tables.'
+    );
+  }
+  const diagramDescription = simGraphDescription();
+
     const _result = {
       question: sumq,
       solution: suma,
@@ -831,8 +889,8 @@ const off = document.createElement('canvas');
         height: off.height,
         withSolution: true,
         
-        description: 'Diagram (shown with the solution): graph of the two linear equations with axes and scale.',
-        solutionDescription: 'Diagram (solution): graph of both lines; coordinate tables appear in the solution text.',
+        description: diagramDescription,
+        solutionDescription: diagramDescription,
         questionDraw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} },
         draw: (c) => { try { c.drawImage(off, 0, 0); } catch (e) {} }
       };
